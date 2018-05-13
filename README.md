@@ -12,7 +12,6 @@ Thank you for all your support!
 
 ##  At an early date
 
- - Adaptive
  - New charts
  - New widgets
  - Currency converter
