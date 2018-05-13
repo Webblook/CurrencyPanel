@@ -60,7 +60,18 @@
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px)
   .sidebar
-    display: none
+    height: 60px
+    position: fixed
+    top: 8rem
+    left: 0
+    padding: 0
+    z-index: 10
+  ul
+    height: 60px
+    display: flex
+    justify-content: space-between
+  a
+    padding: 3rem 4rem !important
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {}
@@ -78,5 +89,5 @@
     i
       left: 50%
       transform: translate(-50%)
-      margin-left: 0
+      margin-left: 0  
 </style>
