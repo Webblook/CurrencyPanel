@@ -4,7 +4,7 @@
       <ion-icon name="logo-euro"></ion-icon>
     </div>
     <div class="widget_right align-self-center">
-      <h1>{{ this.dataCurrencies[this.date.years[0]+'/'+this.date.months[0]+'/'+this.date.dates[0]].rates.USD }}</h1>
+      <h1>{{ this.dataCurrencies[this.date.years[0]+'/'+this.date.months[0]+'/'+this.date.dates[0]].rates.USD.toFixed(3) }}</h1>
       <p>EUR to USD</p>
     </div>
   </div>
