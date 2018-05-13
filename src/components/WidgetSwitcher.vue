@@ -1,9 +1,8 @@
 <template>
-  <div class="currency-switcher widget">
+  <div class="widget">
     <div class="container-fluid">
       <div class="row justify-content-center">
-
-        <div class="col-5">
+        <div class="col-5 align-self-center">
           <select>
             <option>EUR</option>
           </select>
@@ -13,7 +12,7 @@
           <ion-icon name="arrow-round-forward"></ion-icon>
         </div>
 
-        <div class="col-5">
+        <div class="col-5 align-self-center">
           <select 
           ref="currencies" 
           v-on:change="$emit('selectedCurrency', getSelectValue())">
@@ -25,7 +24,6 @@
             v-if="key != 'RUB' && key != 'USD'">{{ key }}</option>
           </select>
         </div> 
-         
       </div>
     </div>
   </div>

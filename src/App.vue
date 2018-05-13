@@ -5,28 +5,28 @@
     <div class="container-fluid">
       <div class="row">
 
-        <the-sidebar class="col-2"></the-sidebar>
+        <the-sidebar class="col-xl-2 col-sm-1"></the-sidebar>
 
-        <main class="col-10 offset-2">
+        <main class="col-xl-10 offset-xl-2 col-sm-11 offset-sm-1">
           <div class="row flex-column align-items-center">
             <div class="col-12">
               <div class="widgets-container">
                 <div class="row justify-content-between">
 
-                  <div class="col-xl-4 col-lg-6 col-md-12">
+                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                     <widget-rate-default
                     v-bind:dataCurrencies="this.dataCurrencies"
                     v-bind:date="this.date"></widget-rate-default>
                   </div>
 
-                  <div class="col-xl-4 col-lg-6 col-md-12">
+                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                     <widget-rate
                     v-bind:dataCurrencies="this.dataCurrencies"
                     v-bind:selectedCurrency="this.selectedCurrency"
                     v-bind:rates="this.rates"></widget-rate>
                   </div>
 
-                  <div class="col-xl-4 col-lg-6 col-md-12">
+                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                     <widget-switcher
                     v-bind:dataCurrencies="this.dataCurrencies"
                     v-bind:date="this.date"
@@ -170,22 +170,6 @@ export default {
 </script>
 
 <style lang='sass'>
-@import url('https://fonts.googleapis.com/css?family=Open+Sans')
-
-*
-  margin: 0
-  padding: 0
-  box-sizing: border-box
-
-html
-  font-size: 10px
-  
-body
-  font-family: 'Open Sans', sans-serif
-  font-size: 1.6rem
-  background: #F5F5F5
-  padding-top: 8rem
-
 $dimBlack: #424242
 $dimGrey: #9E9E9E
 
@@ -197,28 +181,22 @@ main
   background: #fff
   border-radius: 1rem
   box-shadow: 0 0 10px #eee
-  padding: 5.5rem
   margin: 2rem 0
+  text-align: center
   ion-icon
     font-size: 6rem
     color: #2196F3
-
-.widget_left
-  width: 100%
-
-.widget_right
-  width: 100%
-  text-align: center
   h1
     font-size: 3rem
     color: $dimBlack
   p
-    margin-top: 1rem
     font-size: 1.5rem
     color: $dimGrey
+  .row
+    height: 150px
 
 .chart-container
-  padding: 3rem 0
+  padding: 2% 0
   background: #fff
   border-radius: 1rem
   box-shadow: 0 0 10px #eee

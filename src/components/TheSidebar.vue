@@ -1,10 +1,10 @@
 <template>
   <nav class="sidebar">
     <ul>
-      <li><a href="#">Widgets<ion-icon name="cube"></ion-icon></a></li>
-      <li><a href="#">Charts<ion-icon name="pie"></ion-icon></a></li>
-      <li><a href="#">Settings<ion-icon name="cog"></ion-icon></a></li>
-      <li><a href="#">Contact<ion-icon name="mail"></ion-icon></a></li>
+      <li><a href="#"><span>Widgets</span><ion-icon name="cube"></ion-icon></a></li>
+      <li><a href="#"><span>Charts</span><ion-icon name="pie"></ion-icon></a></li>
+      <li><a href="#"><span>Settings</span><ion-icon name="cog"></ion-icon></a></li>
+      <li><a href="#"><span>Contact</span><ion-icon name="mail"></ion-icon></a></li>
     </ul>
   </nav>
 </template>
@@ -36,4 +36,27 @@
     top: 2.2rem
     left: 0
     margin-left: 3rem
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px)
+  .sidebar
+    display: none
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) 
+  .sidebar
+    span
+      display: none
+    a
+      padding: 4rem 0
+    ion-icon
+      left: 50%
+      transform: translate(-50%)
+      margin-left: 0
 </style>

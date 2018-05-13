@@ -1,11 +1,15 @@
 <template>
-  <div class="widget d-flex">
-    <div class="widget_left align-self-center">
-      <ion-icon name="logo-euro"></ion-icon>
-    </div>
-    <div class="widget_right align-self-center">
-      <h1>{{ this.dataCurrencies[this.date.years[0]+'/'+this.date.months[0]+'/'+this.date.dates[0]].rates.USD.toFixed(3) }}</h1>
-      <p>EUR to USD</p>
+  <div class="widget">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6 align-self-center">
+          <ion-icon name="logo-euro"></ion-icon>
+        </div>
+        <div class="col-6 align-self-center">
+          <h1>{{ this.dataCurrencies[this.date.years[0]+'/'+this.date.months[0]+'/'+this.date.dates[0]].rates.USD.toFixed(3) }}</h1>
+          <p>EUR to USD</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
