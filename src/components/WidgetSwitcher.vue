@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-1 align-self-center">
-          <ion-icon name="arrow-round-forward"></ion-icon>
+          <i class="ion-md-arrow-round-forward"></i>
         </div>
 
         <div class="col-5 align-self-center">
@@ -63,7 +63,7 @@ select
   border: 1px solid #2196F3
   color: $dimBlack
   
-ion-icon
+i
   font-size: 2rem
   margin-left: -1rem
   color: #2196F3

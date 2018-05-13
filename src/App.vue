@@ -183,7 +183,7 @@ main
   box-shadow: 0 0 10px #eee
   margin: 2rem 0
   text-align: center
-  ion-icon
+  i
     font-size: 6rem
     color: #2196F3
   h1

@@ -1,10 +1,30 @@
 <template>
   <nav class="sidebar">
     <ul>
-      <li><a href="#"><span>Widgets</span><ion-icon name="cube"></ion-icon></a></li>
-      <li><a href="#"><span>Charts</span><ion-icon name="pie"></ion-icon></a></li>
-      <li><a href="#"><span>Settings</span><ion-icon name="cog"></ion-icon></a></li>
-      <li><a href="#"><span>Contact</span><ion-icon name="mail"></ion-icon></a></li>
+      <li>
+        <a href="#">
+          <span>Widgets</span>
+          <i class="ion-md-cube"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span>Charts</span>
+          <i class="ion-md-pie"></i>
+        </a>
+        </li>
+      <li>
+        <a href="#">
+          <span>Settings</span>
+          <i class="ion-md-cog"></i>
+        </a>
+        </li>
+      <li>
+        <a href="#">
+          <span>Contact</span>
+          <i class="ion-md-mail"></i>
+        </a>
+      </li>
     </ul>
   </nav>
 </template>
@@ -31,7 +51,7 @@
     transition: .4s
     &:hover
       color: #03A9F4
-  ion-icon
+  i
     position: absolute
     top: 2.2rem
     left: 0
@@ -55,7 +75,7 @@
       display: none
     a
       padding: 4rem 0
-    ion-icon
+    i
       left: 50%
       transform: translate(-50%)
       margin-left: 0

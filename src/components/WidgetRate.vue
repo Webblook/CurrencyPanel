@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-6 align-self-center">
-          <ion-icon name="cash"></ion-icon>
+         <i class="ion-md-cash"></i>
         </div>
         <div class="col-6 align-self-center">
           <h1>{{ this.rates[0].toFixed(3) }}</h1>

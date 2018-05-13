@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-6 align-self-center">
-          <ion-icon name="logo-euro"></ion-icon>
+          <i class="ion-logo-euro"></i>
         </div>
         <div class="col-6 align-self-center">
           <h1>{{ this.dataCurrencies[this.date.years[0]+'/'+this.date.months[0]+'/'+this.date.dates[0]].rates.USD.toFixed(3) }}</h1>
