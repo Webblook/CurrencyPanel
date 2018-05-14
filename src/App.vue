@@ -119,20 +119,16 @@ export default {
         for (let i = 0; i < 7; i++) {
           fetch('http://data.fixer.io/api/'+this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]+'-'+'?access_key=e9f35012208415f1b93462f7d7943f2a')
             .then( response => response.json() )
-            .then( response => localStorage.setItem(this.date.years[i]+'/'+this.date.months[i]+'/'+this.date.dates[i], JSON.stringify(response)) )
+            .then( response => localStorage.setItem(this.date.years[i]+this.date.months[i]+this.date.dates[i], JSON.stringify(response)) )
         };
       };
     },
 
     setDataCurrencies() {
       // Записываем в dataCurrencies все полученные данные
-      let combinedObj = {};
-
       for (let i = 0; i < 7; i++) {
-        combinedObj[this.date.years[i]+'/'+this.date.months[i]+'/'+this.date.dates[i]] = JSON.parse( localStorage.getItem(this.date.years[i]+'/'+this.date.months[i]+'/'+this.date.dates[i]) );
+        this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]] = JSON.parse( localStorage.getItem(this.date.years[i]+this.date.months[i]+this.date.dates[i]) );
       };
-
-      this.dataCurrencies = combinedObj;
     },
 
     setSelectedCurrency(currency) {
@@ -143,7 +139,7 @@ export default {
       // Добавляем курс для первоначальной прорисовки диаграммы
       for (let i = 0; i < 7; i++) {
         this.rates.push(
-          this.dataCurrencies[this.date.years[i]+'/'+this.date.months[i]+'/'+this.date.dates[i]].rates[this.selectedCurrency]
+          this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]].rates[this.selectedCurrency]
         );
       };
     }
@@ -156,7 +152,7 @@ export default {
 
       for (let i = 0; i < 7; i++) {
         this.rates.push(
-          this.dataCurrencies[this.date.years[i]+'/'+this.date.months[i]+'/'+this.date.dates[i]].rates[this.selectedCurrency]
+          this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]].rates[this.selectedCurrency]
         );
       };
     }
