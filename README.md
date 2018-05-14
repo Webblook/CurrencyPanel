@@ -4,7 +4,7 @@ The CurrencyPanel is designed to monitor the exchange rate of different currenci
 
 Thank you for all your support!
 
-## Version 1.0.0
+## Version 1.0
 
  - Added new widgets
  - Added new currencies for comparison with the Euro
