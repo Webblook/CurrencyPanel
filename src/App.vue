@@ -73,7 +73,11 @@ export default {
 
   data() {
     return {
-      date: {},
+      date: {
+        years: [],
+        months: [],
+        dates: []
+      },
       dataCurrencies: {},
       selectedCurrency: 'RUB',
       rates: []
@@ -89,25 +93,16 @@ export default {
 
   methods: {
     setDate() {
-      let years = [];
-      let months = [];
-      let dates = [];
-
       // Добавляем последние 7 чисел
       // YYYY/MM/DD
       for (let i = 0; i < 7; i++) {
         let date = new Date();
 
         date.setDate( date.getDate()-i );
-        years.push( date.getFullYear() );
-        months.push( ('0' + (date.getMonth()+1)).slice(-2) );
-        dates.push( ('0' + date.getDate()).slice(-2) );
+        this.date.years.push( date.getFullYear() );
+        this.date.months.push( ('0' + (date.getMonth()+1)).slice(-2) );
+        this.date.dates.push( ('0' + date.getDate()).slice(-2) );
       };
-
-      // Записываем в date полученные массивы
-      this.date.years = years;
-      this.date.months = months;
-      this.date.dates = dates;
     },
 
     getDataCurrencies() {
