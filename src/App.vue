@@ -22,8 +22,7 @@
                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                     <widget-rate
                     v-bind:dataCurrencies="this.dataCurrencies"
-                    v-bind:selectedCurrency="this.selectedCurrency"
-                    v-bind:rates="this.rates"></widget-rate>
+                    v-bind:selectedCurrency="this.selectedCurrency"></widget-rate>
                   </div>
 
                   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
@@ -41,8 +40,7 @@
               <div class="chart-container d-flex justify-content-center">
                 <chart-line-chart
                 v-bind:dataCurrencies="this.dataCurrencies"
-                v-bind:selectedCurrency="this.selectedCurrency"
-                v-bind:rates="this.rates"></chart-line-chart> 
+                v-bind:selectedCurrency="this.selectedCurrency"></chart-line-chart> 
               </div>
             </div>
 
@@ -78,17 +76,17 @@ export default {
         months: [],
         dates: []
       },
-      dataCurrencies: {},
-      selectedCurrency: 'RUB',
-      rates: []
+      dataCurrencies: {
+        activeRates: []
+      },
+      selectedCurrency: 'RUB'
     }
   },
 
   created() {
     this.setDate(),
     this.getDataCurrencies(),
-    this.setDataCurrencies(),
-    this.setExchangeRate()
+    this.setDataCurrencies()
   },
 
   methods: {
@@ -125,35 +123,25 @@ export default {
     },
 
     setDataCurrencies() {
-      // Записываем в dataCurrencies все полученные данные
+      // Записываем в dataCurrencies полученные даные
+      // Записываем первоначальный курс для прорисовки диаграммы
       for (let i = 0; i < 7; i++) {
         this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]] = JSON.parse( localStorage.getItem(this.date.years[i]+this.date.months[i]+this.date.dates[i]) );
+        this.dataCurrencies.activeRates.push( this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]].rates[this.selectedCurrency] );
       };
     },
 
     setSelectedCurrency(currency) {
       this.selectedCurrency = currency;
-    },
-
-    setExchangeRate() {
-      // Добавляем курс для первоначальной прорисовки диаграммы
-      for (let i = 0; i < 7; i++) {
-        this.rates.push(
-          this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]].rates[this.selectedCurrency]
-        );
-      };
     }
   },
 
   watch: {
     selectedCurrency() {
-      // Следим за selectedCurrency для перерисовки диаграммы
-      this.rates = [];
-
+      // Меняем данные в activeRates при изменении выбранной валюты
+      this.dataCurrencies.activeRates = [];
       for (let i = 0; i < 7; i++) {
-        this.rates.push(
-          this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]].rates[this.selectedCurrency]
-        );
+        this.dataCurrencies.activeRates.push( this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]].rates[this.selectedCurrency] );
       };
     }
   }

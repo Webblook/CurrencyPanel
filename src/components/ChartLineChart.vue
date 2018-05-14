@@ -15,11 +15,6 @@ export default {
     selectedCurrency: {
       type: String,
       required: true
-    },
-
-    rates: {
-      type: Array,
-      required: true
     }
   },
 
@@ -67,7 +62,7 @@ export default {
 
       // Добавляем в data дефолтные данные
       chart.data.datasets.forEach((dataset) => {
-        dataset.data.push( this.rates.forEach((item)=>dataset.data.unshift(item)) );
+        dataset.data.push( this.dataCurrencies.activeRates.forEach((item)=>dataset.data.unshift(item)) );
       });
 
       // Добавляем в labels дни недели
@@ -83,7 +78,7 @@ export default {
       // При изменении активной валюты добавляем новые данные
       this.chart.data.datasets.forEach((dataset) => {
         dataset.data = [];
-        dataset.data.push( this.rates.forEach((item)=>dataset.data.unshift(item)) );
+        dataset.data.push( this.dataCurrencies.activeRates.forEach((item)=>dataset.data.unshift(item)) );
         dataset.label = this.selectedCurrency;
       });
 

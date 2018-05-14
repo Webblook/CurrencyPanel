@@ -6,7 +6,7 @@
          <i class="ion-md-cash"></i>
         </div>
         <div class="col-6 align-self-center">
-          <h1>{{ this.rates[0].toFixed(3) }}</h1>
+          <h1>{{ this.dataCurrencies.activeRates[0].toFixed(3) }}</h1>
           <p>EUR to {{ this.selectedCurrency }}</p>
         </div>
       </div>
@@ -24,11 +24,6 @@ export default {
     
     selectedCurrency: {
       type: String,
-      required: true
-    },
-
-    rates: {
-      type: Array,
       required: true
     }
   }
