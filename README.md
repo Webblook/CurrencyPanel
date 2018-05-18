@@ -22,12 +22,12 @@ npm run build
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
 End with an example of getting some data out of the system or using it for a little demo
 
-### At an erly date
+## At an erly date
 
 - Bar, line, area  charts  and other new charts
 - Additional widgets, their customization
 - Currency converter
-- Interface setup
+- Interface settings
 - Our main goal is to support all currencies (Change pricing plan)
 
 ## Built with
