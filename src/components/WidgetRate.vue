@@ -6,7 +6,7 @@
          <i class="ion-md-cash"></i>
         </div>
         <div class="col-6 align-self-center">
-          <h1>{{ this.dataCurrencies.activeRates[0].toFixed(3) }}</h1>
+          <h1>{{ this.dataCurrencies.activeRates[6].toFixed(3) }}</h1>
           <p>EUR to {{ this.selectedCurrency }}</p>
         </div>
       </div>

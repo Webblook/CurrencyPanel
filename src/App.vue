@@ -97,24 +97,17 @@ export default {
         let date = new Date();
 
         date.setDate( date.getDate()-i );
-        this.date.years.push( date.getFullYear() );
-        this.date.months.push( ('0' + (date.getMonth()+1)).slice(-2) );
-        this.date.dates.push( ('0' + date.getDate()).slice(-2) );
+        this.date.years.unshift( date.getFullYear() );
+        this.date.months.unshift( ('0' + (date.getMonth()+1)).slice(-2) );
+        this.date.dates.unshift( ('0' + date.getDate()).slice(-2) );
       };
     },
 
     getDataCurrencies() {
-      // Обновляем курсы валют + устанавливаем новое время в localStorage, если прошло более 24-х
-      if (Date.now() > localStorage.getItem('remainingTime')) {
-        localStorage.clear();
-
-        let date = new Date();
-        let remainingTime = date.getTime( date.setHours(24,0,0,0) ); // Устанавливаем полночь след. дня
-        localStorage.setItem('remainingTime', remainingTime);
-
-        // Делаем 7 запросов для получения курса на каждый день
-        // Добавляем в localStorage полученные данные
-        for (let i = 0; i < 7; i++) {
+      // Проверяем ключи из localStorage на соответствие актуальным датам
+      // При несовпадении получаем необходимые данные
+      for (let i = 0; i < 7; i++) {
+        if (localStorage.key(i) != this.date.years[i]+this.date.months[i]+this.date.dates[i]) {
           fetch('http://data.fixer.io/api/'+this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]+'-'+'?access_key=e9f35012208415f1b93462f7d7943f2a')
             .then( response => response.json() )
             .then( response => localStorage.setItem(this.date.years[i]+this.date.months[i]+this.date.dates[i], JSON.stringify(response)) )
