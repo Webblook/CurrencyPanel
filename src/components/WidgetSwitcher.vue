@@ -20,7 +20,7 @@
             <option>USD</option>
             <option 
             v-for="(value, key) in this.dataCurrencies[this.date.years[0]+this.date.months[0]+this.date.dates[0]].rates" 
-            v-bind:key="value.id"
+            v-bind:key="key"
             v-if="key != 'RUB' && key != 'USD'">{{ key }}</option>
           </select>
         </div> 

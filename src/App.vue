@@ -1,12 +1,13 @@
 <template>
-  <div id="app">
+  <div id="app" v-on:click="hideModal()">
     <the-header></the-header>
 
     <div class="container-fluid">
       <div class="row">
 
-        <the-sidebar class="col-xl-2 col-sm-1"></the-sidebar>
-
+        <the-sidebar class="col-xl-2 col-sm-1" 
+        v-on:showModal="showModal = true"></the-sidebar>
+        
         <main class="col-xl-10 offset-xl-2 col-sm-11 offset-sm-1">
           <div class="row flex-column align-items-center">
             <div class="col-12">
@@ -36,11 +37,12 @@
               </div>
             </div>
 
-            <div class="col-12">
+            <div class="col-12"> 
               <div class="chart-container d-flex justify-content-center">
-                <chart-line-chart
+                <chart-base
                 v-bind:dataCurrencies="this.dataCurrencies"
-                v-bind:selectedCurrency="this.selectedCurrency"></chart-line-chart> 
+                v-bind:selectedCurrency="this.selectedCurrency"
+                v-bind:currentChartComponent="this.currentChartComponent"></chart-base>
               </div>
             </div>
 
@@ -48,6 +50,11 @@
         </main>
       </div>
     </div>
+
+    <modal-charts 
+    v-bind:showModal="showModal"
+    v-on:line="currentChartComponent = 'chart-line'"
+    v-on:bar="currentChartComponent = 'chart-bar'"></modal-charts>
   </div>
 </template>
 
@@ -57,7 +64,8 @@ import TheSidebar from './components/TheSidebar.vue';
 import WidgetRate from './components/WidgetRate.vue';
 import WidgetRateDefault from './components/WidgetRateDefault.vue';
 import WidgetSwitcher from './components/WidgetSwitcher.vue';
-import ChartLineChart from './components/ChartLineChart.vue';
+import ChartBase from './components/ChartBase.vue';
+import ModalCharts from './components/ModalCharts.vue';
 
 export default {
   components: {
@@ -66,7 +74,8 @@ export default {
     'widget-rate': WidgetRate,
     'widget-rate-default': WidgetRateDefault,
     'widget-switcher': WidgetSwitcher,
-    'chart-line-chart': ChartLineChart
+    'chart-base': ChartBase,
+    'modal-charts': ModalCharts
   },
 
   data() {
@@ -79,7 +88,19 @@ export default {
       dataCurrencies: {
         activeRates: []
       },
-      selectedCurrency: 'RUB'
+      selectedCurrency: 'RUB',
+      showModal: false,
+      currentChartComponent: 'chart-line'
+    }
+  },
+
+  watch: {
+    selectedCurrency() {
+      // Меняем данные в activeRates при изменении выбранной валюты
+      this.dataCurrencies.activeRates = [];
+      for (let i = 0; i < 7; i++) {
+        this.dataCurrencies.activeRates.push( this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]].rates[this.selectedCurrency] );
+      };
     }
   },
 
@@ -108,7 +129,7 @@ export default {
       // При несовпадении получаем необходимые данные
       for (let i = 0; i < 7; i++) {
         if (localStorage.key(i) != this.date.years[i]+this.date.months[i]+this.date.dates[i]) {
-          fetch('http://data.fixer.io/api/'+this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]+'-'+'?access_key=e9f35012208415f1b93462f7d7943f2a')
+          fetch('http://data.fixer.io/api/'+this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]+'-'+'?access_key=YOUR_API_KEY')
             .then( response => response.json() )
             .then( response => localStorage.setItem(this.date.years[i]+this.date.months[i]+this.date.dates[i], JSON.stringify(response)) )
         };
@@ -126,16 +147,10 @@ export default {
 
     setSelectedCurrency(currency) {
       this.selectedCurrency = currency;
-    }
-  },
+    },
 
-  watch: {
-    selectedCurrency() {
-      // Меняем данные в activeRates при изменении выбранной валюты
-      this.dataCurrencies.activeRates = [];
-      for (let i = 0; i < 7; i++) {
-        this.dataCurrencies.activeRates.push( this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]].rates[this.selectedCurrency] );
-      };
+    hideModal() {
+      this.showModal = false
     }
   }
 }
@@ -172,4 +187,10 @@ main
   background: #fff
   border-radius: 1rem
   box-shadow: 0 0 10px #eee
+
+.modal-enter 
+  opacity: 0
+
+.modal-leave-active 
+  opacity: 0
 </style>

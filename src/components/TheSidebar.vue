@@ -2,25 +2,25 @@
   <nav class="sidebar">
     <ul>
       <li>
-        <a href="#">
+        <a>
           <span>Widgets</span>
           <i class="ion-md-cube"></i>
         </a>
       </li>
-      <li>
-        <a href="#">
+      <li v-on:click.stop>
+        <a v-on:click="$emit('showModal')">
           <span>Charts</span>
           <i class="ion-md-pie"></i>
         </a>
         </li>
       <li>
-        <a href="#">
+        <a>
           <span>Settings</span>
           <i class="ion-md-cog"></i>
         </a>
         </li>
       <li>
-        <a href="#">
+        <a>
           <span>Contact</span>
           <i class="ion-md-mail"></i>
         </a>
@@ -49,6 +49,7 @@
     text-decoration: none
     color: #424242
     transition: .4s
+    cursor: pointer
     &:hover
       color: #03A9F4
   i
