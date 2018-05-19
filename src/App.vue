@@ -129,7 +129,7 @@ export default {
       // При несовпадении получаем необходимые данные
       for (let i = 0; i < 7; i++) {
         if (localStorage.key(i) != this.date.years[i]+this.date.months[i]+this.date.dates[i]) {
-          fetch('http://data.fixer.io/api/'+this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]+'-'+'?access_key=YOUR_API_KEY')
+          fetch('http://data.fixer.io/api/'+this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]+'-'+'?access_key=9715c4c33820dac62fe129e9506ea668')
             .then( response => response.json() )
             .then( response => localStorage.setItem(this.date.years[i]+this.date.months[i]+this.date.dates[i], JSON.stringify(response)) )
         };

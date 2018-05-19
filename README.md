@@ -24,10 +24,9 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 End with an example of getting some data out of the system or using it for a little demo
 
 ### Usage
-To use our currency panel, you have to to use free API key from Fixer.io. 
-To do this, find in App.vue:
-    
-> 132: fetch('http://data.fixer.io/api/'+this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]+'-'+'?access_key=YOUR_API_KEY')
+To use our currency panel, you have to to use free API key from Fixer.io.
+
+* [YOUR_API_KEY](https://github.com/Webblook/CurrencyPanel/blob/6f1c25c1d0a3bb14fa52f6e9d7217a915befa452/src/App.vue#L132) -   Desired row
 
 ## At an erly date
 
