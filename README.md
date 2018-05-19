@@ -1,3 +1,4 @@
+
 # CurrencyPanel
 
 The CurrencyPanel is designed to monitor the exchange rate of currencies. At the moment there is a possibility of comparison Euro with 168 currencies. Due to the free api there is the ability only to compare the Euro with other currencies.
@@ -22,9 +23,15 @@ npm run build
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
 End with an example of getting some data out of the system or using it for a little demo
 
+### Usage
+To use our currency panel, you have to to use free API key from Fixer.io. 
+To do this, find in App.vue:
+    
+> 132: fetch('http://data.fixer.io/api/'+this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]+'-'+'?access_key=YOUR_API_KEY')
+
 ## At an erly date
 
-- Bar, line, area  charts  and other new charts
+- Bar, line, area  charts  and other charts
 - Additional widgets, their customization
 - Currency converter
 - Interface settings
@@ -42,13 +49,11 @@ End with an example of getting some data out of the system or using it for a lit
 
 For details on our code, contributing and the development process please leave requests in issues.
 
-## Version 1.0.2
+## Version 1.0.5
 
 ##### Recent changes you can check in commits.
 
- - Responsive design
- - Changed the number of zeros after the decimal point
- - Some bug fixes
+ - Added the ability to select a chart
 
 ## License
 
