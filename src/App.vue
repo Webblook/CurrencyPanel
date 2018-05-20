@@ -140,7 +140,7 @@ export default {
             .then( response => response.json() )
             .then( response => localStorage.setItem(this.date.years[i]+this.date.months[i]+this.date.dates[i], JSON.stringify(response)) )
         };
-      }
+      };
     },
 
     setDataCurrencies() {
