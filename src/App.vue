@@ -52,7 +52,7 @@
     </div>
 
     <modal-charts 
-    v-bind:showModal="showModal"
+    v-bind:showModal="this.showModal"
     v-on:line="currentChartComponent = 'chart-line'; hideModal()"
     v-on:bar="currentChartComponent = 'chart-bar'; hideModal()"></modal-charts>
   </div>
