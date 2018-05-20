@@ -3,7 +3,8 @@
     <component
     v-bind:is="this.currentChartComponent"
     v-bind:dataCurrencies="this.dataCurrencies"
-    v-bind:selectedCurrency="this.selectedCurrency"></component>
+    v-bind:selectedCurrency="this.selectedCurrency"
+    v-bind:weekDays="this.weekDays"></component>
   </div>
 </template>
 
@@ -31,6 +32,31 @@ export default {
     currentChartComponent: {
       type: String,
       required: true
+    }
+  },
+
+  data() {
+    return {
+      weekDays: []
+    }
+  },
+
+  created() {
+    this.getWeekDays()
+  },
+
+  methods: {
+    getWeekDays() {
+      let weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      let days = [];
+  
+      for (let i = 0; i < 7; i++) {
+        // Получаем названий дней недели за последние 7 дней
+        let date = new Date();
+
+        days.push( date.getDay( date.setDate( date.getDate()-i ) ) );
+        this.weekDays.unshift( weekDays[days[i]] )
+      };
     }
   }
 }

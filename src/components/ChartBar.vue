@@ -13,13 +13,17 @@ export default {
     selectedCurrency: {
       type: String,
       required: true
+    },
+
+    weekDays: {
+      type: Array,
+      required: true
     }
   },
 
   data() {
     return {
-      chart: {},
-      weekDays: []
+      chart: {}
     }
   },
 
@@ -37,24 +41,10 @@ export default {
   },
 
   mounted() {
-    this.getWeekDays(),
     this.drawChart()
   },
 
   methods: {
-    getWeekDays() {
-      let weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      let days = [];
-  
-      for (let i = 0; i < 7; i++) {
-        // Получаем названий дней недели за последние 7 дней
-        let date = new Date();
-
-        days.push( date.getDay( date.setDate( date.getDate()-i ) ) );
-        this.weekDays.push( weekDays[days[i]] )
-      };
-    },
-
     drawChart() {
       // Прорисовка диаграммы
       let ctx = this.$refs.chart.getContext('2d');
