@@ -53,8 +53,8 @@
 
     <modal-charts 
     v-bind:showModal="showModal"
-    v-on:line="currentChartComponent = 'chart-line'"
-    v-on:bar="currentChartComponent = 'chart-bar'"></modal-charts>
+    v-on:line="currentChartComponent = 'chart-line'; hideModal()"
+    v-on:bar="currentChartComponent = 'chart-bar'; hideModal()"></modal-charts>
   </div>
 </template>
 
@@ -64,8 +64,8 @@ import TheSidebar from './components/TheSidebar.vue';
 import WidgetRate from './components/WidgetRate.vue';
 import WidgetRateDefault from './components/WidgetRateDefault.vue';
 import WidgetSwitcher from './components/WidgetSwitcher.vue';
-import ChartBase from './components/ChartBase.vue';
 import ModalCharts from './components/ModalCharts.vue';
+import ChartBase from './components/ChartBase.vue';
 
 export default {
   components: {
@@ -74,8 +74,8 @@ export default {
     'widget-rate': WidgetRate,
     'widget-rate-default': WidgetRateDefault,
     'widget-switcher': WidgetSwitcher,
-    'chart-base': ChartBase,
-    'modal-charts': ModalCharts
+    'modal-charts': ModalCharts,
+    'chart-base': ChartBase
   },
 
   data() {
