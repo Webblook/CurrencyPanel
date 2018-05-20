@@ -125,15 +125,22 @@ export default {
     },
 
     getDataCurrencies() {
-      // Проверяем ключи из localStorage на соответствие актуальным датам
-      // При несовпадении получаем необходимые данные
-      for (let i = 0; i < 7; i++) {
-        if (localStorage.key(i) != this.date.years[i]+this.date.months[i]+this.date.dates[i]) {
+      // Обновляем курсы валют + устанавливаем новое время в localStorage, если прошло более 24-х
+      if (Date.now() > localStorage.getItem('remainingTime')) {
+        localStorage.clear();
+
+        let date = new Date();
+        let remainingTime = date.getTime( date.setHours(24,0,0,0) ); // Устанавливаем полночь след. дня
+        localStorage.setItem('remainingTime', remainingTime);
+
+        // Проверяем ключи из localStorage на соответствие актуальным датам
+        // При несовпадении получаем необходимые данные
+        for (let i = 0; i < 7; i++) {
           fetch('http://data.fixer.io/api/'+this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]+'-'+'?access_key=9715c4c33820dac62fe129e9506ea668')
             .then( response => response.json() )
             .then( response => localStorage.setItem(this.date.years[i]+this.date.months[i]+this.date.dates[i], JSON.stringify(response)) )
         };
-      };
+      }
     },
 
     setDataCurrencies() {
