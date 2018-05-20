@@ -67,6 +67,7 @@ export default {
   background: #fff
   transform: translate(-50%, -50%)
   z-index: 10
+  border-radius: 1rem
 
 h2
   margin: 1rem 2rem
