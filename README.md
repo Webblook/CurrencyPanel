@@ -43,11 +43,12 @@ End with an example of getting some data out of the system or using it for a lit
 
 For details on our code, contributing and the development process please leave requests in issues.
 
-## Version 1.0.5
+## Version 1.0.7
 
 ##### Recent changes you can check in commits.
 
- - Added the ability to select a chart
+ - Added new charts: horizontal bar chart, pie chart, radar chart
+ - Changed the design of the chart selection modal
 
 ## License
 
