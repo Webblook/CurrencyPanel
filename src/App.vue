@@ -136,8 +136,7 @@ export default {
         let remainingTime = date.getTime( date.setHours(24,0,0,0) ); // Устанавливаем полночь след. дня
         localStorage.setItem('remainingTime', remainingTime);
 
-        // Проверяем ключи из localStorage на соответствие актуальным датам
-        // При несовпадении получаем необходимые данные
+        // Делаем запросы на последние 7 дней, добавляем в localStorage
         for (let i = 0; i < 7; i++) {
           fetch('http://data.fixer.io/api/'+this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]+'-'+'?access_key=9715c4c33820dac62fe129e9506ea668')
             .then( response => response.json() )
