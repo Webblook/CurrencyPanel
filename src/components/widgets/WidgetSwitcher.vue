@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../assets/style/variables.sass'
+@import '../../assets/style/variables.sass'
 
 select
   width: 100%

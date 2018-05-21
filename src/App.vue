@@ -64,11 +64,11 @@
 <script>
 import TheHeader from './components/TheHeader.vue';
 import TheSidebar from './components/TheSidebar.vue';
-import WidgetRate from './components/WidgetRate.vue';
-import WidgetRateDefault from './components/WidgetRateDefault.vue';
-import WidgetSwitcher from './components/WidgetSwitcher.vue';
+import WidgetRate from './components/widgets/WidgetRate.vue';
+import WidgetRateDefault from './components/widgets/WidgetRateDefault.vue';
+import WidgetSwitcher from './components/widgets/WidgetSwitcher.vue';
 import ModalCharts from './components/ModalCharts.vue';
-import ChartBase from './components/ChartBase.vue';
+import ChartBase from './components/charts/ChartBase.vue';
 
 export default {
   components: {
