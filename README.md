@@ -25,11 +25,10 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## At an erly date
 
-- Bar, line, area  charts  and other charts
-- Additional widgets, their customization
-- Currency converter
+- New widgets, their customization
 - Interface settings
-- Our main goal is to support all currencies (Change pricing plan)
+- Currency converter
+- Support all currencies (change pricing plan)
 
 ## Built with
 
