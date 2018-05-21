@@ -2,28 +2,12 @@
   <transition name="modal">
      <div class="modal__mask" v-if="showModal">
         <div class="modal__charts" v-on:click.stop>
-          <h2>Select the chart</h2>
+          <h2>Select a chart</h2>
           <div class="hr"></div>
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-6 align-self-center">
-                <ul>
-                  <li><h3>Bar chart</h3></li>
-                  <li><h3>Line chart</h3></li>
-                </ul>
-              </div>
-              <div class="col-6 align-self-center">
-                <ul>
-                  <li>
-                    <a><button v-on:click="$emit('bar')">Select</button></a>
-                  </li>
-                  <li>
-                    <a><button v-on:click="$emit('line')">Select</button></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <ul>
+            <li><a v-on:click="$emit('bar')">Bar chart</a></li>
+            <li><a v-on:click="$emit('line')">Line chart</a></li>
+          </ul>
         </div>
       </div>
   </transition>
@@ -56,9 +40,8 @@ export default {
   top: 0
   left: 0
   background: rgba(0, 0, 0, .5);
-  z-index: 10
+  z-index: 9999
   transition: .3s
-  text-align: center
 
 .modal__charts
   width: 400px
@@ -68,34 +51,35 @@ export default {
   left: 50%
   background: #fff
   transform: translate(-50%, -50%)
-  z-index: 10
-  border-radius: 1rem
+  z-index: 9999
 
 h2
-  margin: 1rem 2rem
+  font-weight: normal
+  margin: 1rem 1rem
   text-align: left
 
 .hr
   width: 100%
   border: 1px solid #eee
 
+ul
+  display: flex
+
 li
   list-style: none
-  padding: 2.5rem 0
-
-h2, h3
-  font-weight: normal
-
-button
-  width: 150px
-  height: 25px
-  background: $lightBlue
-  border: none
-  color: #fff
-  cursor: pointer
-  border-radius: 0.3rem
-  outline: none
+  margin: 1.5rem 1rem
   transition: .3s
   &:hover
-    opacity: .8
+    background: $lightBlue
+
+a
+  display: block
+  text-decoration: none
+  cursor: pointer
+  padding: 1rem
+  border: 2px solid $lightBlue
+  color: $blue
+  transition: .3s
+  &:hover
+    color: #fff
 </style>
