@@ -47,6 +47,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import '../assets/style/variables.sass'
+
 .modal__mask
   width: 100%
   height: 100%
@@ -87,7 +89,7 @@ h2, h3
 button
   width: 150px
   height: 25px
-  background: #03A9F4
+  background: $lightBlue
   border: none
   color: #fff
   cursor: pointer

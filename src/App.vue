@@ -164,8 +164,7 @@ export default {
 </script>
 
 <style lang='sass'>
-$dimBlack: #424242
-$dimGrey: #9E9E9E
+@import 'assets/style/variables.sass'
 
 main
   padding-top: 1rem
@@ -182,10 +181,10 @@ main
     color: #2196F3
   h1
     font-size: 3rem
-    color: $dimBlack
+    color: $black
   p
     font-size: 1.5rem
-    color: $dimGrey
+    color: $grey
   .row
     height: 150px
 

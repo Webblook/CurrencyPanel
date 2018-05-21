@@ -30,6 +30,8 @@
 </template>
 
 <style lang="sass" scoped>
+@import '../assets/style/variables.sass'
+
 .sidebar
   height: calc(100vh - 81px)
   position: fixed
@@ -47,11 +49,11 @@
     display: block
     padding: 2rem 7rem
     text-decoration: none
-    color: #424242
+    color: $black
     transition: .4s
     cursor: pointer
     &:hover
-      color: #03A9F4
+      color: $lightBlue
   i
     position: absolute
     top: 2.2rem

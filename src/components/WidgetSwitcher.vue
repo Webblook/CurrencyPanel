@@ -54,17 +54,17 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-$dimBlack: #424242
+@import '../assets/style/variables.sass'
 
 select
   width: 100%
   height: 40px
   background: #fff
   border: 1px solid #2196F3
-  color: $dimBlack
+  color: $black
   
 i
   font-size: 2rem
   margin-left: -1rem
-  color: #2196F3
+  color: $blue
 </style>

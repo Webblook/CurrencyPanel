@@ -24,9 +24,7 @@
 </template>
 
 <style lang="sass" scoped>
-$dimBlack: #424242
-$blueGrey: #607D8B
-$blue: #03A9F4
+@import '../assets/style/variables.sass'
 
 header
   position: fixed
@@ -48,7 +46,7 @@ header
     color: $blueGrey
     letter-spacing: 0.1rem
     &:last-child
-      color: $blue
+      color: $lightBlue
 
 .navbar__user
   ul
@@ -60,12 +58,12 @@ header
       margin: 1.5rem
     a
       text-decoration: none
-      color: $dimBlack
+      color: $black
     p
       display: inline
       margin-left: 1.5rem
       font-size: 1.8rem
-      color: $dimBlack
+      color: $black
     img
       width: 35px
       height: 35px
