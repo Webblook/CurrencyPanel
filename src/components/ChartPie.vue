@@ -49,13 +49,12 @@ export default {
       // Прорисовка диаграммы
       let ctx = this.$refs.chart.getContext('2d');
       let chart = new Chart(ctx, {
-        type: 'line',
+        type: 'pie',
         data: {
           labels: this.weekDays,
           datasets: [{
               label: this.selectedCurrency,
-              backgroundColor: 'rgba(3, 169, 244, 0.1)',
-              borderColor: '#03A9F4',
+              backgroundColor: ['#FFAB00', '#6200EA', '#AEEA00', '#00BFA5', '#FFFF00', '#DD2C00', '#263238'],
               data: this.dataCurrencies.activeRates,
           }]
         },

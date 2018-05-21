@@ -11,11 +11,17 @@
 <script>
 import ChartLine from './ChartLine.vue'
 import ChartBar from './ChartBar.vue'
+import ChartRadar from './ChartRadar.vue'
+import ChartHorizontalBar from './ChartHorizontalBar.vue'
+import ChartPie from './ChartPie.vue'
 
 export default {
   components: {
     'chart-line': ChartLine,
-    'chart-bar': ChartBar
+    'chart-bar': ChartBar,
+    'chart-radar': ChartRadar,
+    'chart-horizontal-bar': ChartHorizontalBar,
+    'chart-pie': ChartPie
   },
 
   props: {

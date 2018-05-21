@@ -5,8 +5,11 @@
           <h2>Select a chart</h2>
           <div class="hr"></div>
           <ul>
-            <li><a v-on:click="$emit('bar')">Bar chart</a></li>
             <li><a v-on:click="$emit('line')">Line chart</a></li>
+            <li><a v-on:click="$emit('bar')">Bar chart</a></li>
+            <li><a v-on:click="$emit('radar')">Radar chart</a></li>
+            <li><a v-on:click="$emit('horizontalBar')">Horizontal bar chart</a></li>
+            <li><a v-on:click="$emit('pie')">Pie chart</a></li>
           </ul>
         </div>
       </div>
@@ -64,6 +67,7 @@ h2
 
 ul
   display: flex
+  flex-wrap: wrap
 
 li
   list-style: none

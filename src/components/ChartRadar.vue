@@ -49,7 +49,7 @@ export default {
       // Прорисовка диаграммы
       let ctx = this.$refs.chart.getContext('2d');
       let chart = new Chart(ctx, {
-        type: 'line',
+        type: 'radar',
         data: {
           labels: this.weekDays,
           datasets: [{

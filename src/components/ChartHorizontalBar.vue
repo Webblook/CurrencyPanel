@@ -49,12 +49,12 @@ export default {
       // Прорисовка диаграммы
       let ctx = this.$refs.chart.getContext('2d');
       let chart = new Chart(ctx, {
-        type: 'line',
+        type: 'horizontalBar',
         data: {
           labels: this.weekDays,
           datasets: [{
               label: this.selectedCurrency,
-              backgroundColor: 'rgba(3, 169, 244, 0.1)',
+              backgroundColor: '#03A9F4',
               borderColor: '#03A9F4',
               data: this.dataCurrencies.activeRates,
           }]
