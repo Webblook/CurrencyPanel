@@ -1,7 +1,7 @@
 {
   "name": "currencypanel",
   "description:": "SPA to monitor the exchange rate of currencies",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "author": {
     "name": "Daniil Dubrava",
     "email": "daniil.dubrava@yandex.ru"
