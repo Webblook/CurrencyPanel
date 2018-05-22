@@ -2,15 +2,51 @@
   <transition name="modal">
      <div class="modal__mask" v-if="showModal">
         <div class="modal__charts" v-on:click.stop>
-          <h2>Select a chart</h2>
+          <h2>Chart settings</h2>
           <div class="hr"></div>
-          <ul>
-            <li><a v-on:click="$emit('line')">Line chart</a></li>
-            <li><a v-on:click="$emit('bar')">Bar chart</a></li>
-            <li><a v-on:click="$emit('radar')">Radar chart</a></li>
-            <li><a v-on:click="$emit('horizontalBar')">Horizontal bar chart</a></li>
-            <li><a v-on:click="$emit('pie')">Pie chart</a></li>
-          </ul>
+          <div class="modal__chart-selection">
+            <ul>
+              <li>
+                <input type="radio" id="chart-line" name="charts">
+                <label for="chart-line">Line chart</label>
+              </li>         
+
+              <li>
+                <input type="radio" id="chart-bar" name="charts">
+                <label for="chart-bar">Bar chart</label>
+              </li>
+
+              <li>
+                <input type="radio" id="chart-radar" name="charts">
+                <label for="chart-radar">Radar chart</label>
+              </li>
+
+              <li>
+                <input type="radio" id="chart-horizontal-bar" name="charts">
+                <label for="chart-horizontal-bar">Horizontal bar chart</label>
+              </li>
+
+              <li>
+                <input type="radio" id="chart-pie" name="charts">
+                <label for="chart-pie">Pie chart</label>
+              </li> 
+            </ul>
+          </div>
+          <div class="hr"></div>
+          <div class="modal__chart-settings d-flex flex-column">
+            <div class="modal__chart-settings_first align-self-center">
+              <p>Background-color</p>
+              <input type="text" value="#03A9F4">
+            </div>
+            <div class="modal__chart-settings_second align-self-center">
+              <p>Border-color</p>
+              <input type="text" value="#03A9F4">    
+            </div>
+          </div>
+          <div class="hr"></div>
+          <div class="modal__chart-confirmation d-flex justify-content-end">
+            <button v-on:click="$emit('selectedChart', getSelectedChart())">Save</button>
+          </div>
         </div>
       </div>
   </transition>
@@ -25,9 +61,15 @@ export default {
     }
   },
 
-  data() {
-    return {
-      charts: []
+  methods: {
+    getSelectedChart() {
+      let charts = ['chart-line', 'chart-bar', 'chart-radar', 'chart-horizontal-bar', 'chart-pie'];
+
+      for (let i = 0; i < charts.length; i++) {
+        if (document.getElementById(charts[i]).checked) {
+          return charts[i];
+        };
+      };
     }
   }
 }
@@ -35,7 +77,6 @@ export default {
 
 <style lang="sass" scoped>
 @import '../assets/style/variables.sass'
-
 .modal__mask
   width: 100%
   height: 100%
@@ -47,8 +88,8 @@ export default {
   transition: .3s
 
 .modal__charts
-  width: 400px
-  height: 400px
+  width: 420px
+  height: 430px
   position: fixed
   top: 50%
   left: 50%
@@ -58,12 +99,13 @@ export default {
 
 h2
   font-weight: normal
+  font-size: 2.5rem
   margin: 1rem 1rem
-  text-align: left
 
 .hr
   width: 100%
-  border: 1px solid #eee
+  border: 0.5px solid #eee
+  margin: 1rem 0
 
 ul
   display: flex
@@ -71,19 +113,54 @@ ul
 
 li
   list-style: none
-  margin: 1.5rem 1rem
-  transition: .3s
-  &:hover
-    background: $lightBlue
+  margin: 2rem 1rem
 
-a
-  display: block
-  text-decoration: none
+input[type=radio]
+  display: none
+
+input[type=radio] + label
   cursor: pointer
   padding: 1rem
   border: 2px solid $lightBlue
   color: $blue
   transition: .3s
   &:hover
+    color: #fff
+    background: $lightBlue
+
+input[type=radio]:checked + label
+  color: #fff
+  background: $lightBlue
+
+p
+  font-size: 1.5rem
+
+input
+  border: 1px solid #E0E0E0
+  outline: none
+  width: 300px
+  height: 25px
+  margin: 0.5rem 0
+  padding: 0 1rem
+  border-radius: 5px
+  color: #757575
+
+.modal__chart-settings_first,
+.modal__chart-settings_second
+  margin: 0.5rem
+
+button
+  width: 70px
+  height: 40px
+  border: 2px solid $lightBlue
+  background: none
+  outline: none
+  border-radius: 7px
+  color: $lightBlue
+  margin: 1rem 2rem
+  cursor: pointer
+  transition: .3s
+  &:hover
+    background: $lightBlue
     color: #fff
 </style>

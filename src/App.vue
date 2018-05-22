@@ -53,11 +53,7 @@
 
     <modal-charts 
     v-bind:showModal="this.showModal"
-    v-on:line="currentChartComponent = 'chart-line'; hideModal()"
-    v-on:bar="currentChartComponent = 'chart-bar'; hideModal()"
-    v-on:radar="currentChartComponent = 'chart-radar'; hideModal()"
-    v-on:horizontalBar="currentChartComponent = 'chart-horizontal-bar'; hideModal()"
-    v-on:pie="currentChartComponent = 'chart-pie'; hideModal()"></modal-charts>
+    v-on:selectedChart="setSelectedChart"></modal-charts>
   </div>
 </template>
 
@@ -158,8 +154,13 @@ export default {
       this.selectedCurrency = currency;
     },
 
+    setSelectedChart(chart) {
+      this.currentChartComponent = chart;
+      this.hideModal();
+    },
+
     hideModal() {
-      this.showModal = false
+      this.showModal = false;
     }
   }
 }
