@@ -1,38 +1,22 @@
 <template>
   <transition name="modal">
+
      <div class="modal__mask" v-if="showModal">
         <div class="modal__charts" v-on:click.stop>
           <h2>Chart settings</h2>
           <div class="hr"></div>
+
           <div class="modal__chart-selection">
             <ul>
-              <li>
-                <input type="radio" id="chart-line" name="charts" v-bind:checked="inputs[0].isChecked">
-                <label for="chart-line">Line chart</label>
-              </li>         
-
-              <li>
-                <input type="radio" id="chart-bar" name="charts" v-bind:checked="inputs[1].isChecked">
-                <label for="chart-bar">Bar chart</label>
-              </li>
-
-              <li>
-                <input type="radio" id="chart-radar" name="charts" v-bind:checked="inputs[2].isChecked">
-                <label for="chart-radar">Radar chart</label>
-              </li>
-
-              <li>
-                <input type="radio" id="chart-horizontal-bar" name="charts" v-bind:checked="inputs[3].isChecked">
-                <label for="chart-horizontal-bar">Horizontal bar chart</label>
-              </li>
-
-              <li>
-                <input type="radio" id="chart-pie" name="charts" v-bind:checked="inputs[4].isChecked">
-                <label for="chart-pie">Pie chart</label>
-              </li> 
+              <li v-for="input in inputs">
+                <input type="radio" v-bind:id="input.id" name="charts" v-bind:checked="input.isChecked">
+                <label v-bind:for="input.id">{{ input.label }}</label>
+              </li>      
             </ul>
           </div>
+
           <div class="hr"></div>
+
           <div class="modal__chart-settings d-flex flex-column">
             <div class="modal__chart-settings_first align-self-center">
               <p>Background-color</p>
@@ -43,12 +27,14 @@
               <input type="text" value="#03A9F4">    
             </div>
           </div>
+
           <div class="hr"></div>
           <div class="modal__chart-confirmation d-flex justify-content-end">
             <button v-on:click="$emit('selectedChart', getSelectedChart())">Save</button>
           </div>
         </div>
       </div>
+
   </transition>
 </template>
 
@@ -63,6 +49,7 @@ export default {
 
   data() {
     return {
+      charts: ['chart-line', 'chart-bar', 'chart-radar', 'chart-horizontal-bar', 'chart-pie'],
       inputs: []
     }
   },
@@ -73,34 +60,33 @@ export default {
 
   methods: {
     setInputs() {
-      let charts = ['chart-line', 'chart-bar', 'chart-radar', 'chart-horizontal-bar', 'chart-pie'];
+      let labels = ['Line chart', 'Bar chart', 'Radar chart', 'Horizontal bar chart', 'Pie chart'];
 
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < this.charts.length; i++) {
         this.inputs.push(
           {
-            id: charts[i],
+            id: this.charts[i],
+            label: labels[i],
             isChecked: false
           }
-        )
-      }
+        );
+      };
 
       this.inputs[0].isChecked = true;
     },
 
     getSelectedChart() {
-      let charts = ['chart-line', 'chart-bar', 'chart-radar', 'chart-horizontal-bar', 'chart-pie'];
-
       // Устанавливаем всем input'ам isChecked = false
-      for (let i = 0; i < charts.length; i++) { 
+      for (let i = 0; i < this.charts.length; i++) { 
         this.inputs[i].isChecked = false;
       };
 
       // Если input.checked = true, присваиваем isChecked = true
       // Возвращаем выбранный компонент
-      for (let i = 0; i < charts.length; i++) {
-        if (document.getElementById(charts[i]).checked) {
+      for (let i = 0; i < this.charts.length; i++) {
+        if (document.getElementById(this.charts[i]).checked) {
           this.inputs[i].isChecked = true;
-          return charts[i];
+          return this.charts[i];
         };
       };
     }
