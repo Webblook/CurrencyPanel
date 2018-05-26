@@ -83,6 +83,8 @@ export default {
           }
         )
       }
+
+      this.inputs[0].isChecked = true;
     },
 
     getSelectedChart() {
