@@ -7,27 +7,27 @@
           <div class="modal__chart-selection">
             <ul>
               <li>
-                <input type="radio" id="chart-line" name="charts">
+                <input type="radio" id="chart-line" name="charts" v-bind:checked="inputs[0].isChecked">
                 <label for="chart-line">Line chart</label>
               </li>         
 
               <li>
-                <input type="radio" id="chart-bar" name="charts">
+                <input type="radio" id="chart-bar" name="charts" v-bind:checked="inputs[1].isChecked">
                 <label for="chart-bar">Bar chart</label>
               </li>
 
               <li>
-                <input type="radio" id="chart-radar" name="charts">
+                <input type="radio" id="chart-radar" name="charts" v-bind:checked="inputs[2].isChecked">
                 <label for="chart-radar">Radar chart</label>
               </li>
 
               <li>
-                <input type="radio" id="chart-horizontal-bar" name="charts">
+                <input type="radio" id="chart-horizontal-bar" name="charts" v-bind:checked="inputs[3].isChecked">
                 <label for="chart-horizontal-bar">Horizontal bar chart</label>
               </li>
 
               <li>
-                <input type="radio" id="chart-pie" name="charts">
+                <input type="radio" id="chart-pie" name="charts" v-bind:checked="inputs[4].isChecked">
                 <label for="chart-pie">Pie chart</label>
               </li> 
             </ul>
@@ -61,12 +61,43 @@ export default {
     }
   },
 
+  data() {
+    return {
+      inputs: []
+    }
+  },
+
+  mounted() {
+    this.setInputs()
+  },
+
   methods: {
+    setInputs() {
+      let charts = ['chart-line', 'chart-bar', 'chart-radar', 'chart-horizontal-bar', 'chart-pie'];
+
+      for (let i = 0; i < 5; i++) {
+        this.inputs.push(
+          {
+            id: charts[i],
+            isChecked: false
+          }
+        )
+      }
+    },
+
     getSelectedChart() {
       let charts = ['chart-line', 'chart-bar', 'chart-radar', 'chart-horizontal-bar', 'chart-pie'];
 
+      // Устанавливаем всем input'ам isChecked = false
+      for (let i = 0; i < charts.length; i++) { 
+        this.inputs[i].isChecked = false;
+      };
+
+      // Если input.checked = true, присваиваем isChecked = true
+      // Возвращаем выбранный компонент
       for (let i = 0; i < charts.length; i++) {
         if (document.getElementById(charts[i]).checked) {
+          this.inputs[i].isChecked = true;
           return charts[i];
         };
       };
