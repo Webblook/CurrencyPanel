@@ -8,7 +8,9 @@
 
           <div class="modal__chart-selection">
             <ul>
-              <li v-for="input in inputs">
+              <li 
+              v-for="input in inputs"
+              v-bind:key="input">
                 <input type="radio" v-bind:id="input.id" name="charts" v-bind:checked="input.isChecked">
                 <label v-bind:for="input.id">{{ input.label }}</label>
               </li>      
