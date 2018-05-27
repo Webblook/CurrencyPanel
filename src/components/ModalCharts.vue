@@ -1,7 +1,7 @@
 <template>
   <transition name="modal">
 
-     <div class="modal__mask" v-if="showModal">
+     <div class="modal__mask" v-if="showCharts">
         <div class="modal__charts" v-on:click.stop>
           <h2>Chart settings</h2>
           <div class="hr"></div>
@@ -43,7 +43,7 @@
 <script>
 export default {
   props: {    
-    showModal: {
+    showCharts: {
       type: Boolean,
       required: true
     }
@@ -136,6 +136,9 @@ li
   list-style: none
   margin: 2rem 1rem
 
+input
+  font-family: 'Open Sans', sans-serif
+  
 input[type=radio]
   display: none
 
