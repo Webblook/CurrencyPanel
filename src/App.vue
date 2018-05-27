@@ -6,7 +6,8 @@
       <div class="row">
 
         <the-sidebar class="col-xl-2 col-sm-1" 
-        v-on:showModal="showModal = true"></the-sidebar>
+        v-on:showCharts="showCharts = true"
+        v-on:showContacts="showContacts = true"></the-sidebar>
         
         <main class="col-xl-10 offset-xl-2 col-sm-11 offset-sm-1">
           <div class="row flex-column align-items-center">
@@ -52,8 +53,11 @@
     </div>
 
     <modal-charts 
-    v-bind:showModal="this.showModal"
+    v-bind:showCharts="this.showCharts"
     v-on:selectedChart="setSelectedChart"></modal-charts>
+
+    <modal-contacts
+    v-bind:showContacts="this.showContacts"></modal-contacts>
   </div>
 </template>
 
@@ -65,6 +69,7 @@ import WidgetRateDefault from './components/widgets/WidgetRateDefault.vue';
 import WidgetSwitcher from './components/widgets/WidgetSwitcher.vue';
 import ModalCharts from './components/ModalCharts.vue';
 import ChartBase from './components/charts/ChartBase.vue';
+import ModalContacts from './components/ModalContacts.vue';
 
 export default {
   components: {
@@ -74,7 +79,8 @@ export default {
     'widget-rate-default': WidgetRateDefault,
     'widget-switcher': WidgetSwitcher,
     'modal-charts': ModalCharts,
-    'chart-base': ChartBase
+    'chart-base': ChartBase,
+    'modal-contacts': ModalContacts
   },
 
   data() {
@@ -88,7 +94,8 @@ export default {
         activeRates: []
       },
       selectedCurrency: 'RUB',
-      showModal: false,
+      showCharts: false,
+      showContacts: false,
       currentChartComponent: 'chart-line'
     }
   },
@@ -160,7 +167,8 @@ export default {
     },
 
     hideModal() {
-      this.showModal = false;
+      this.showCharts = false;
+      this.showContacts = false;
     }
   }
 }

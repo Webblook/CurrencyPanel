@@ -8,7 +8,7 @@
         </a>
       </li>
       <li v-on:click.stop>
-        <a v-on:click="$emit('showModal')">
+        <a v-on:click="$emit('showCharts')">
           <span>Charts</span>
           <i class="ion-md-pie"></i>
         </a>
@@ -19,8 +19,8 @@
           <i class="ion-md-cog"></i>
         </a>
         </li>
-      <li>
-        <a>
+      <li v-on:click.stop>
+        <a v-on:click="$emit('showContacts')">
           <span>Contact</span>
           <i class="ion-md-mail"></i>
         </a>
