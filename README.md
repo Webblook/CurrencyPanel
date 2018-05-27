@@ -37,18 +37,18 @@ End with an example of getting some data out of the system or using it for a lit
 * [Fixer.io](https://fixer.io/) - Fixer is a simple and lightweight API for  current and historical foreign exchange rates.
 * [Chart.js](https://www.chartjs.org/) - Simple yet flexible JavaScript charting for designers & developers
 * [Ionicons](http://ionicons.com/) - Beautifully crafted open source icons
+* [Formspree](https://formspree.io/) - Functional HTML forms
 
 ## Contributing
 
 For details on our code, contributing and the development process please leave requests in issues.
 
-## Version 1.0.8
+## Version 1.0.9
 
 ##### Recent changes you can check in commits.
 
- - Added chart settings
- - Added new charts: horizontal bar chart, pie chart, radar chart
- - Changed the design of the chart selection modal
+ - Added new component - contacts
+ - Added contact form
 
 ## License
 
