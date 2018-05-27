@@ -22,11 +22,11 @@
           <div class="modal__chart-settings d-flex flex-column">
             <div class="modal__chart-settings_first align-self-center">
               <p>Background-color</p>
-              <input type="text" value="#03A9F4">
+              <input type="text" value="#03A9F4" disabled>
             </div>
             <div class="modal__chart-settings_second align-self-center">
               <p>Border-color</p>
-              <input type="text" value="#03A9F4">    
+              <input type="text" value="#03A9F4" disabled>    
             </div>
           </div>
 
