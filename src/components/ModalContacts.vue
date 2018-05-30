@@ -8,7 +8,7 @@
           
           <div class="modal__contacts__form">
             <form method="POST" action="https://formspree.io/daniil.dubrava@yandex.ru">
-              <input type="email" name="email" placeholder="Your email" maxlength="35">
+              <input type="email" name="email" placeholder="Your email" maxlength="35" autocomplete="off">
               <textarea name="message" placeholder="Your message" maxlength="350"></textarea>
               <button type="submit">Send</button>
             </form>
@@ -73,29 +73,31 @@ input, textarea
 input
   width: 350px
   height: 44px
-  border: 1px solid #E0E0E0
   outline: none
+  color: $black
+  border: 1px solid $lightBlue
   margin: 2rem
   padding: 0 2rem
 
 textarea
   width: 350px
   height: 200px
-  border: 1px solid #E0E0E0
   outline: none
   resize: none
+  color: $black
+  border: 1px solid $lightBlue
   padding: 1rem 2rem
 
 button
   width: 350px
   height: 30px
-  border: 2px solid $lightBlue
   background: none
   outline: none
-  border-radius: 7px
   color: $lightBlue
-  margin: 1rem 2rem
+  border: 1px solid $lightBlue
+  border-radius: 7px
   cursor: pointer
+  margin: 1rem 2rem
   transition: .3s
   &:hover
     background: $lightBlue
