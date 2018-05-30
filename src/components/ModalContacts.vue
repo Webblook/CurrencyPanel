@@ -8,8 +8,8 @@
           
           <div class="modal__contacts__form">
             <form method="POST" action="https://formspree.io/daniil.dubrava@yandex.ru">
-              <input type="email" name="email" placeholder="Your email" maxlength="35" autocomplete="off">
-              <textarea name="message" placeholder="Your message" maxlength="350"></textarea>
+              <input type="email" name="email" placeholder="Your email" maxlength="35" autocomplete="off" required>
+              <textarea name="message" placeholder="Your message" maxlength="350" required></textarea>
               <button type="submit">Send</button>
             </form>
           </div>
