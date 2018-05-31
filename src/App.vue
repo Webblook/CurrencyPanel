@@ -6,6 +6,7 @@
       <div class="row">
 
         <the-sidebar class="col-xl-2 col-sm-1" 
+        v-on:showWidgets="showWidgets = true"
         v-on:showCharts="showCharts = true"
         v-on:showContacts="showContacts = true"></the-sidebar>
         
@@ -52,6 +53,9 @@
       </div>
     </div>
 
+    <modal-widgets
+    v-bind:showWidgets="this.showWidgets"></modal-widgets>
+
     <modal-charts 
     v-bind:showCharts="this.showCharts"
     v-on:selectedChart="setSelectedChart"></modal-charts>
@@ -67,6 +71,7 @@ import TheSidebar from './components/TheSidebar.vue';
 import WidgetRate from './components/widgets/WidgetRate.vue';
 import WidgetRateDefault from './components/widgets/WidgetRateDefault.vue';
 import WidgetSwitcher from './components/widgets/WidgetSwitcher.vue';
+import ModalWidgets from './components/ModalWidgets.vue';
 import ModalCharts from './components/ModalCharts.vue';
 import ChartBase from './components/charts/ChartBase.vue';
 import ModalContacts from './components/ModalContacts.vue';
@@ -78,6 +83,7 @@ export default {
     'widget-rate': WidgetRate,
     'widget-rate-default': WidgetRateDefault,
     'widget-switcher': WidgetSwitcher,
+    'modal-widgets': ModalWidgets,
     'modal-charts': ModalCharts,
     'chart-base': ChartBase,
     'modal-contacts': ModalContacts
@@ -94,6 +100,7 @@ export default {
         activeRates: []
       },
       selectedCurrency: 'RUB',
+      showWidgets: false,
       showCharts: false,
       showContacts: false,
       currentChartComponent: 'chart-line'
@@ -167,6 +174,7 @@ export default {
     },
 
     hideModal() {
+      this.showWidgets = false;
       this.showCharts = false;
       this.showContacts = false;
     }
@@ -210,4 +218,44 @@ main
 
 .modal-leave-active 
   opacity: 0
+
+.modal__mask
+  width: 100%
+  height: 100%
+  position: fixed
+  top: 0
+  left: 0
+  background: rgba(0, 0, 0, .5);
+  z-index: 9999
+  transition: .3s
+
+.modal__container-widgets,
+.modal__container-charts,
+.modal__container-contacts
+  width: 390px
+  height: 440px
+  position: fixed
+  top: 50%
+  left: 50%
+  background: #fff
+  transform: translate(-50%, -50%)
+  z-index: 9999
+  border-radius: 0.5rem
+  padding: 1.5rem
+  h2
+    font-weight: normal
+    font-size: 2.5rem
+    margin: 1rem 1rem
+  .hr
+    width: 100%
+    border: 0.5px solid #eee
+    margin: 1rem 0
+
+.modal__container-charts
+  width: 350px
+  height: 350px
+
+.modal__container-contacts
+  width: 390px
+  height: 420px
 </style>

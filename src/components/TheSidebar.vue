@@ -1,8 +1,8 @@
 <template>
   <nav class="sidebar">
     <ul>
-      <li>
-        <a>
+      <li v-on:click.stop>
+        <a v-on:click="$emit('showWidgets')">
           <span>Widgets</span>
           <i class="ion-md-cube"></i>
         </a>

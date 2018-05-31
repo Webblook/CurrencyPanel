@@ -2,14 +2,20 @@
   <transition name="modal">
 
      <div class="modal__mask" v-if="showContacts">
-        <div class="modal__contacts" v-on:click.stop>
-          <h2>Contacts</h2>
+        <div class="modal__container-contacts" v-on:click.stop>
+          <h2>Contact us</h2>
           <div class="hr"></div>
           
-          <div class="modal__contacts__form">
+          <div class="modal__container-contacts__form">
             <form method="POST" action="https://formspree.io/daniil.dubrava@yandex.ru">
-              <input type="email" name="email" placeholder="Your email" maxlength="35" autocomplete="off" required>
-              <textarea name="message" placeholder="Your message" maxlength="350" required></textarea>
+              <div class="modal__container-contacts__form-email">
+                <span class="email">E-mail</span>
+                <input id="email" type="email" name="email" maxlength="35" autocomplete="off" required>
+              </div>
+              <div class="modal__container-contacts__form-message">
+                <span class="message">Message</span>
+                <textarea name="message" maxlength="350" required></textarea>
+              </div>    
               <button type="submit">Send</button>
             </form>
           </div>
@@ -32,40 +38,28 @@ export default {
 
 <style lang="sass" scoped>
 @import '../assets/style/variables.sass'
-.modal__mask
-  width: 100%
-  height: 100%
-  position: fixed
-  top: 0
-  left: 0
-  background: rgba(0, 0, 0, .5);
-  z-index: 9999
-  transition: .3s
-
-.modal__contacts
-  width: 420px
-  height: 430px
-  position: fixed
-  top: 50%
-  left: 50%
-  background: #fff
-  transform: translate(-50%, -50%)
-  z-index: 9999
-
-h2
-  font-weight: normal
-  font-size: 2.5rem
-  margin: 1rem 1rem
-
-.hr
-  width: 100%
-  border: 0.5px solid #eee
-  margin: 1rem 0
-
 form
   display: flex
   flex-direction: column
   align-items: center
+
+.modal__container-contacts__form-email,
+.modal__container-contacts__form-message
+  margin: 2rem 0
+  position: relative
+
+span
+  position: absolute
+  font-size: 1rem
+  text-transform: uppercase
+
+.email
+  top: -10%
+  left: 0
+
+.message
+  top: -20%
+  left: 0
 
 input, textarea
   font-family: 'Open Sans', sans-serif
@@ -74,31 +68,31 @@ input
   width: 350px
   height: 44px
   outline: none
+  border: none
+  border-bottom: 2px solid $lightBlue
   color: $black
-  border: 1px solid $lightBlue
-  margin: 2rem
-  padding: 0 2rem
 
 textarea
   width: 350px
-  height: 200px
+  height: 100px
   outline: none
   resize: none
+  border: none
+  border-bottom: 2px solid $lightBlue
   color: $black
-  border: 1px solid $lightBlue
-  padding: 1rem 2rem
 
 button
-  width: 350px
-  height: 30px
+  width: 130px
+  height: 35px
+  font-size: 1.5rem
+  border: 2px solid $lightBlue
+  border-radius: 5px
   background: none
   outline: none
   color: $lightBlue
-  border: 1px solid $lightBlue
-  border-radius: 7px
   cursor: pointer
-  margin: 1rem 2rem
   transition: .3s
+  margin: 3rem
   &:hover
     background: $lightBlue
     color: #fff
