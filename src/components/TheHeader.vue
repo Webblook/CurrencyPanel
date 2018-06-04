@@ -67,4 +67,12 @@ header
     img
       width: 35px
       height: 35px
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px)
+  .navbar__brand
+  h3
+    font-size: 1.3rem !important
+  h2
+    font-size: 1.6rem !important
 </style>

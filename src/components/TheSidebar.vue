@@ -63,7 +63,7 @@
   .sidebar
     height: 60px
     position: fixed
-    top: 8rem
+    top: 7.7rem
     left: 0
     padding: 0
     z-index: 10
