@@ -1,30 +1,28 @@
 <template>
   <nav class="sidebar">
     <ul>
+
       <li v-on:click.stop>
         <a v-on:click="$emit('showWidgets')">
           <span>Widgets</span>
           <i class="ion-md-cube"></i>
         </a>
       </li>
+
       <li v-on:click.stop>
         <a v-on:click="$emit('showCharts')">
           <span>Charts</span>
           <i class="ion-md-pie"></i>
         </a>
-        </li>
-      <li>
-        <a>
-          <span>Settings</span>
-          <i class="ion-md-cog"></i>
-        </a>
-        </li>
+      </li>
+
       <li v-on:click.stop>
         <a v-on:click="$emit('showContacts')">
           <span>Contact</span>
           <i class="ion-md-mail"></i>
         </a>
       </li>
+
     </ul>
   </nav>
 </template>
@@ -47,7 +45,7 @@
   a
     position: relative
     display: block
-    padding: 2rem 7rem
+    padding: 2.5rem 7rem
     text-decoration: none
     color: $black
     transition: .4s
@@ -56,7 +54,7 @@
       color: $lightBlue
   i
     position: absolute
-    top: 2.2rem
+    top: 2.8rem
     left: 0
     margin-left: 3rem
 
@@ -74,7 +72,9 @@
     display: flex
     justify-content: space-between
   a
-    padding: 3rem 4rem !important
+    padding: 3rem 7rem !important
+  i
+    top: 2.2rem !important
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {}
@@ -92,5 +92,5 @@
     i
       left: 50%
       transform: translate(-50%)
-      margin-left: 0  
+      margin-left: 0
 </style>
