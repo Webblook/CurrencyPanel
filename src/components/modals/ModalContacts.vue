@@ -1,7 +1,7 @@
 <template>
   <transition name="modal">
 
-     <div class="modal__mask" v-if="showContacts">
+     <div class="modal__mask">
         <div class="modal__container-contacts" v-on:click.stop>
           <h2>Contact us</h2>
           <div class="hr"></div>
@@ -25,19 +25,9 @@
   </transition>
 </template>
 
-<script>
-export default {
-  props: {    
-    showContacts: {
-      type: Boolean,
-      required: true
-    }
-  }
-}
-</script>
-
 <style lang="sass" scoped>
-@import '../assets/style/variables.sass'
+@import '../../assets/style/variables.sass'
+
 form
   display: flex
   flex-direction: column

@@ -1,39 +1,39 @@
 <template>
-  <div id="app" v-on:click="hideModal()">
+  <div id="app" v-on:click="hideModals()">
     <the-header></the-header>
 
     <div class="container-fluid">
       <div class="row">
 
         <the-sidebar class="col-xl-2 col-sm-1" 
-        v-on:showWidgets="showWidgets = true"
-        v-on:showCharts="showCharts = true"
-        v-on:showContacts="showContacts = true"></the-sidebar>
+        v-on:showWidgets="activeModals.showWidgets = true"
+        v-on:showCharts="activeModals.showCharts = true"
+        v-on:showContacts="activeModals.showContacts = true"></the-sidebar>
         
         <main class="col-xl-10 offset-xl-2 col-sm-11 offset-sm-1">
           <div class="row flex-column align-items-center">
             <div class="col-12">
               <div class="widgets-container">
-                <div class="row justify-content-between">
+                <div class="row justify-content-start">
 
-                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                    <widget-rate-default
-                    v-bind:dataCurrencies="this.dataCurrencies"
-                    v-bind:date="this.date"></widget-rate-default>
-                  </div>
+                  <!-- Favorite currency -->
+                  <widget-favorite-currency
+                  v-show="activeWidgets.favoriteCurrency"
+                  v-bind:dataCurrencies="this.dataCurrencies"
+                  v-bind:date="this.date"></widget-favorite-currency>
 
-                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                    <widget-rate
-                    v-bind:dataCurrencies="this.dataCurrencies"
-                    v-bind:selectedCurrency="this.selectedCurrency"></widget-rate>
-                  </div>
+                  <!-- Selected currency -->
+                  <widget-selected-currency
+                  v-show="activeWidgets.selectedCurrency"
+                  v-bind:dataCurrencies="this.dataCurrencies"
+                  v-bind:selectedCurrency="this.selectedCurrency"></widget-selected-currency>
 
-                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                    <widget-switcher
-                    v-bind:dataCurrencies="this.dataCurrencies"
-                    v-bind:date="this.date"
-                    v-on:selectedCurrency="setSelectedCurrency"></widget-switcher>
-                  </div>
+                  <!-- Currency switcher -->
+                  <widget-currency-switcher
+                  v-show="activeWidgets.currencySwitcher"
+                  v-bind:dataCurrencies="this.dataCurrencies"
+                  v-bind:date="this.date"
+                  v-on:selectedCurrency="setSelectedCurrency"></widget-currency-switcher>
 
                 </div>
               </div>
@@ -53,40 +53,50 @@
       </div>
     </div>
 
+    <!-- Modals -->
     <modal-widgets
-    v-bind:showWidgets="this.showWidgets"></modal-widgets>
+    v-show="activeModals.showWidgets"
+    v-on:selectedToggles="setSelectedWidgets"></modal-widgets>
 
-    <modal-charts 
-    v-bind:showCharts="this.showCharts"
+    <modal-charts
+    v-show="activeModals.showCharts"
     v-on:selectedChart="setSelectedChart"></modal-charts>
 
     <modal-contacts
-    v-bind:showContacts="this.showContacts"></modal-contacts>
+    v-show="activeModals.showContacts"></modal-contacts>
+
   </div>
 </template>
 
 <script>
+// Single-instance components
 import TheHeader from './components/TheHeader.vue';
 import TheSidebar from './components/TheSidebar.vue';
-import WidgetRate from './components/widgets/WidgetRate.vue';
-import WidgetRateDefault from './components/widgets/WidgetRateDefault.vue';
-import WidgetSwitcher from './components/widgets/WidgetSwitcher.vue';
-import ModalWidgets from './components/ModalWidgets.vue';
-import ModalCharts from './components/ModalCharts.vue';
+
+// Chart
 import ChartBase from './components/charts/ChartBase.vue';
-import ModalContacts from './components/ModalContacts.vue';
+
+// Modals
+import ModalWidgets from './components/modals/ModalWidgets.vue';
+import ModalCharts from './components/modals/ModalCharts.vue';
+import ModalContacts from './components/modals/ModalContacts.vue';
+
+// Widgets
+import WidgetFavoriteCurrency from './components/widgets/WidgetFavoriteCurrency.vue';
+import WidgetSelectedCurrency from './components/widgets/WidgetSelectedCurrency.vue';
+import WidgetCurrencySwitcher from './components/widgets/WidgetCurrencySwitcher.vue';
 
 export default {
   components: {
     'the-header': TheHeader,
     'the-sidebar': TheSidebar,
-    'widget-rate': WidgetRate,
-    'widget-rate-default': WidgetRateDefault,
-    'widget-switcher': WidgetSwitcher,
+    'chart-base': ChartBase,
     'modal-widgets': ModalWidgets,
     'modal-charts': ModalCharts,
-    'chart-base': ChartBase,
-    'modal-contacts': ModalContacts
+    'modal-contacts': ModalContacts,
+    'widget-favorite-currency': WidgetFavoriteCurrency,
+    'widget-selected-currency': WidgetSelectedCurrency,
+    'widget-currency-switcher': WidgetCurrencySwitcher
   },
 
   data() {
@@ -96,14 +106,25 @@ export default {
         months: [],
         dates: []
       },
+
       dataCurrencies: {
         activeRates: []
       },
+
       selectedCurrency: 'RUB',
-      showWidgets: false,
-      showCharts: false,
-      showContacts: false,
-      currentChartComponent: 'chart-line'
+      currentChartComponent: 'chart-line',
+
+      activeWidgets: {
+        favoriteCurrency: true,
+        selectedCurrency: true,
+        currencySwitcher: true
+      },
+
+      activeModals: {
+        showWidgets: false,
+        showCharts: false,
+        showContacts: false
+      }
     }
   },
 
@@ -170,13 +191,21 @@ export default {
 
     setSelectedChart(chart) {
       this.currentChartComponent = chart;
-      this.hideModal();
+      this.activeModals.showCharts = false;
     },
 
-    hideModal() {
-      this.showWidgets = false;
-      this.showCharts = false;
-      this.showContacts = false;
+    setSelectedWidgets(widgets) {
+      this.activeModals.showWidgets = false;
+
+      for (let i = 0; i < widgets.length; i++) {
+        this.activeWidgets[widgets[i].id] = widgets[i].isChecked
+      }
+    },
+
+    hideModals() {
+      this.activeModals.showWidgets = false;
+      this.activeModals.showCharts = false;
+      this.activeModals.showContacts = false;
     }
   }
 }
@@ -240,7 +269,7 @@ main
   background: #fff
   transform: translate(-50%, -50%)
   z-index: 9999
-  border-radius: 0.5rem
+  border-radius: 1.5rem
   padding: 1.5rem
   h2
     font-weight: normal
