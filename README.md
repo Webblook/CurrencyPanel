@@ -43,12 +43,13 @@ End with an example of getting some data out of the system or using it for a lit
 
 For details on our code, contributing and the development process please leave requests in issues.
 
-## Version 1.0.9
+## Version 1.1.0
 
 ##### Recent changes you can check in commits.
 
- - Added new component - contacts
- - Added contact form
+ - Added the ability to enable/disable widgets
+ - Deleted settings from sidebar
+ - Changed the design of modals
 
 ## License
 
