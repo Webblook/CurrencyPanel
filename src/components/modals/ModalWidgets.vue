@@ -17,7 +17,12 @@
                 </div>
                 <div class="col-6 align-self-center d-flex justify-content-end">
                   <label class="toggle">
-                    <input type="checkbox" v-bind:id="toggle.id" v-bind:checked="toggle.isChecked">
+                    <input
+                    type="checkbox"
+                    class="toggle__input"
+                    v-bind:id="toggle.id"
+                    v-bind:checked="toggle.isChecked"
+                    v-on:change="checkNumber">
                     <span class="slider"></span>
                   </label>
                 </div>
@@ -41,8 +46,8 @@
   export default {
     data() {
       return {
-        labels: ['Favorite currency', 'Selected currency', 'Currency switcher'],
-        id: ['favoriteCurrency', 'selectedCurrency', 'currencySwitcher'],
+        labels: ['Favorite currency', 'Selected currency', 'Currency switcher', 'Last update'],
+        id: ['favoriteCurrency', 'selectedCurrency', 'currencySwitcher', 'lastUpdate'],
         toggles: []
       }
     },
@@ -52,6 +57,16 @@
     },
 
     methods: {
+      checkNumber(toggle) {
+        let inputs = document.querySelectorAll('.toggle__input:checked');
+
+        if (inputs.length > 3) {
+          toggle.target.checked = false;
+        } else if (inputs.length < 1) {
+          toggle.target.checked = true;
+        };
+      },
+
       setToggles() {
         // Добавляем в toggles объекты с данными каждого переключателя
         for (let i = 0; i < this.labels.length; i++) {
@@ -63,6 +78,8 @@
             }
           );
         };
+
+        this.toggles[this.labels.length-1].isChecked = false;
       },
 
       getSelectedToggles() {
