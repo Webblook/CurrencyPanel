@@ -11,10 +11,10 @@
         v-on:showContacts="activeModals.showContacts = true"></the-sidebar>
         
         <main class="col-xl-10 offset-xl-2 col-sm-11 offset-sm-1">
-          <div class="row flex-column align-items-center">
+          <div class="row">
             <div class="col-12">
               <div class="widgets-container">
-                <div class="row justify-content-start">
+                <div class="row">
 
                   <!-- Favorite currency -->
                   <widget-favorite-currency
@@ -34,6 +34,12 @@
                   v-bind:dataCurrencies="this.dataCurrencies"
                   v-bind:date="this.date"
                   v-on:selectedCurrency="setSelectedCurrency"></widget-currency-switcher>
+
+                  <!-- Last update -->
+                  <widget-last-update
+                  v-show="activeWidgets.lastUpdate"
+                  v-bind:dataCurrencies="this.dataCurrencies"
+                  v-bind:date="this.date"></widget-last-update>
 
                 </div>
               </div>
@@ -85,6 +91,7 @@ import ModalContacts from './components/modals/ModalContacts.vue';
 import WidgetFavoriteCurrency from './components/widgets/WidgetFavoriteCurrency.vue';
 import WidgetSelectedCurrency from './components/widgets/WidgetSelectedCurrency.vue';
 import WidgetCurrencySwitcher from './components/widgets/WidgetCurrencySwitcher.vue';
+import WidgetLastUpdate from './components/widgets/WidgetLastUpdate.vue'
 
 export default {
   components: {
@@ -96,7 +103,8 @@ export default {
     'modal-contacts': ModalContacts,
     'widget-favorite-currency': WidgetFavoriteCurrency,
     'widget-selected-currency': WidgetSelectedCurrency,
-    'widget-currency-switcher': WidgetCurrencySwitcher
+    'widget-currency-switcher': WidgetCurrencySwitcher,
+    'widget-last-update': WidgetLastUpdate
   },
 
   data() {
@@ -117,7 +125,8 @@ export default {
       activeWidgets: {
         favoriteCurrency: true,
         selectedCurrency: true,
-        currencySwitcher: true
+        currencySwitcher: true,
+        lastUpdate: false
       },
 
       activeModals: {
@@ -215,7 +224,7 @@ export default {
 @import 'assets/style/variables.sass'
 
 main
-  padding-top: 1rem
+  padding: 1rem 0
 
 .widget
   height: 150px
@@ -287,4 +296,7 @@ main
 .modal__container-contacts
   width: 390px
   height: 420px
+
+.modal__container-widgets
+  height: 510px
 </style>
