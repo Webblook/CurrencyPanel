@@ -33,7 +33,7 @@
                   v-show="activeWidgets.currencySwitcher"
                   v-bind:dataCurrencies="this.dataCurrencies"
                   v-bind:date="this.date"
-                  v-on:selectedCurrency="setSelectedCurrency"></widget-currency-switcher>
+                  v-on:selectedCurrency="(currency) => this.selectedCurrency = currency"></widget-currency-switcher>
 
                   <!-- Last update -->
                   <widget-last-update
@@ -66,7 +66,7 @@
 
     <modal-charts
     v-show="activeModals.showCharts"
-    v-on:selectedChart="setSelectedChart"></modal-charts>
+    v-on:selectedChart="(chart) => {this.currentChartComponent = chart; this.activeModals.showCharts = false}"></modal-charts>
 
     <modal-contacts
     v-show="activeModals.showContacts"></modal-contacts>
@@ -194,24 +194,18 @@ export default {
       };
     },
 
-    setSelectedCurrency(currency) {
-      this.selectedCurrency = currency;
-    },
-
-    setSelectedChart(chart) {
-      this.currentChartComponent = chart;
-      this.activeModals.showCharts = false;
-    },
-
     setSelectedWidgets(widgets) {
+      // Закрываем модалку showWidgets
+      // Устанавливаем значения isChecked, полученные из widgets
       this.activeModals.showWidgets = false;
 
       for (let i = 0; i < widgets.length; i++) {
-        this.activeWidgets[widgets[i].id] = widgets[i].isChecked
+        this.activeWidgets[widgets[i].id] = widgets[i].isChecked;
       }
     },
 
     hideModals() {
+      // Заркываем все модалки
       this.activeModals.showWidgets = false;
       this.activeModals.showCharts = false;
       this.activeModals.showContacts = false;
@@ -228,11 +222,11 @@ main
 
 .widget
   height: 150px
-  background: #fff
-  border-radius: 1rem
-  box-shadow: 0 0 10px #eee
   margin: 2rem 0
   text-align: center
+  border-radius: 1rem
+  background: #fff
+  box-shadow: 0 0 10px #eee
   i
     font-size: 6rem
     color: #2196F3
@@ -258,36 +252,36 @@ main
   opacity: 0
 
 .modal__mask
-  width: 100%
-  height: 100%
   position: fixed
   top: 0
   left: 0
-  background: rgba(0, 0, 0, .5);
   z-index: 9999
+  width: 100%
+  height: 100%
+  background: rgba(0, 0, 0, .5);
   transition: .3s
 
 .modal__container-widgets,
 .modal__container-charts,
 .modal__container-contacts
-  width: 390px
-  height: 440px
   position: fixed
   top: 50%
   left: 50%
-  background: #fff
   transform: translate(-50%, -50%)
   z-index: 9999
-  border-radius: 1.5rem
+  width: 390px
+  height: 440px
   padding: 1.5rem
+  background: #fff
+  border-radius: 1.5rem
   h2
+    margin: 1rem 1rem
     font-weight: normal
     font-size: 2.5rem
-    margin: 1rem 1rem
   .hr
     width: 100%
-    border: 0.5px solid #eee
     margin: 1rem 0
+    border: 0.5px solid #eee
 
 .modal__container-charts
   width: 350px
