@@ -118,27 +118,25 @@ p
 
 .slider
   position: absolute
-  cursor: pointer
   top: 0
   left: 0
   right: 0
   bottom: 0
-  background-color: $grey
-  -webkit-transition: .4s
-  transition: .4s
+  background: $grey
   border-radius: 34px
+  transition: .4s
+  cursor: pointer
   &:before
     border-radius: 50%
 
 .slider:before
+  content: ''
   position: absolute
-  content: ""
-  height: 26px
-  width: 26px
   left: 4px
   bottom: 4px
-  background-color: white
-  -webkit-transition: .4s
+  height: 26px
+  width: 26px
+  background: #fff
   transition: .4s
 
 input:checked + .slider
@@ -148,22 +146,20 @@ input:focus + .slider
   box-shadow: 0 0 1px $lightBlue
 
 input:checked + .slider:before
-  -webkit-transform: translateX(26px)
-  -ms-transform: translateX(26px)
   transform: translateX(26px)
 
 button
   width: 130px
   height: 35px
+  margin: 3rem
   font-size: 1.5rem
+  color: $lightBlue
+  background: none
   border: 2px solid $lightBlue
   border-radius: 5px
-  background: none
   outline: none
-  color: $lightBlue
-  cursor: pointer
   transition: .3s
-  margin: 3rem
+  cursor: pointer
   &:hover
     background: $lightBlue
     color: #fff

@@ -31,20 +31,20 @@ header
   top: 0
   left: 0
   right: 0
-  background: #fff
-  box-shadow: 0 0 10px #eee
   z-index: 1
   padding: 0.6rem 2rem
+  background: #fff
+  box-shadow: 0 0 10px #eee
 
 .navbar__brand
   h3
+    padding-left: 1.5rem
     font-size: 1.5rem
     color: $blueGrey
-    padding-left: 1.5rem
   h2
     font-size: 1.8rem
-    color: $blueGrey
     letter-spacing: 0.1rem
+    color: $blueGrey
     &:last-child
       color: $lightBlue
 
@@ -54,8 +54,8 @@ header
     li
       display: flex
       align-items: center
-      list-style: none
       margin: 1.5rem
+      list-style: none
     a
       text-decoration: none
       color: $black

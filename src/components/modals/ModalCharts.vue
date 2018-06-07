@@ -84,8 +84,8 @@ ul
   flex-wrap: wrap
 
 li
-  list-style: none
   margin: 3rem 0.3rem
+  list-style: none
 
 input
   font-family: 'Open Sans', sans-serif
@@ -94,11 +94,11 @@ input
   display: none
 
 input + label
-  cursor: pointer
   padding: 1rem
-  border: 2px solid $lightBlue
   color: $blue
+  border: 2px solid $lightBlue
   transition: .3s
+  cursor: pointer
   &:hover
     color: #fff
     background: $lightBlue
@@ -110,15 +110,15 @@ input:checked + label
 button
   width: 130px
   height: 35px
+  margin: 3rem
   font-size: 1.5rem
+  color: $lightBlue
+  background: none
   border: 2px solid $lightBlue
   border-radius: 5px
-  background: none
   outline: none
-  color: $lightBlue
-  cursor: pointer
   transition: .3s
-  margin: 3rem
+  cursor: pointer
   &:hover
     background: $lightBlue
     color: #fff

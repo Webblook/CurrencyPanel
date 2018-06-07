@@ -31,14 +31,14 @@
 @import '../assets/style/variables.sass'
 
 .sidebar
-  height: calc(100vh - 81px)
   position: fixed
   top: 8rem
   left: 0
+  height: calc(100vh - 81px)
+  padding: 1.5rem 0 0 0
   background: #fff
   box-shadow: 0 5px 10px #eee
   border-top: 1px solid #eee
-  padding: 1.5rem 0 0 0
   li
     font-size: 1.6rem
     list-style: none
@@ -61,16 +61,16 @@
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px)
   .sidebar
-    height: 60px
     position: fixed
     top: 7.7rem
     left: 0
-    padding: 0
     z-index: 10
-  ul
     height: 60px
+    padding: 0
+  ul
     display: flex
     justify-content: space-between
+    height: 60px
   a
     padding: 3rem 7rem !important
   i

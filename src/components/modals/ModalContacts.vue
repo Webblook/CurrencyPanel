@@ -35,8 +35,8 @@ form
 
 .modal__container-contacts__form-email,
 .modal__container-contacts__form-message
-  margin: 2rem 0
   position: relative
+  margin: 2rem 0
 
 span
   position: absolute
@@ -57,32 +57,32 @@ input, textarea
 input
   width: 350px
   height: 44px
-  outline: none
+  color: $black
   border: none
   border-bottom: 2px solid $lightBlue
-  color: $black
+  outline: none
 
 textarea
   width: 350px
   height: 100px
-  outline: none
-  resize: none
+  color: $black
   border: none
   border-bottom: 2px solid $lightBlue
-  color: $black
+  outline: none
+  resize: none
 
 button
   width: 130px
   height: 35px
+  margin: 3rem
   font-size: 1.5rem
+  color: $lightBlue
+  background: none
   border: 2px solid $lightBlue
   border-radius: 5px
-  background: none
   outline: none
-  color: $lightBlue
-  cursor: pointer
   transition: .3s
-  margin: 3rem
+  cursor: pointer
   &:hover
     background: $lightBlue
     color: #fff

@@ -61,12 +61,12 @@ export default {
 select
   width: 100%
   height: 40px
+  color: $black
   background: #fff
   border: 1px solid #2196F3
-  color: $black
   
 i
-  font-size: 2rem
   margin-left: -1rem
+  font-size: 2rem
   color: $blue
 </style>
