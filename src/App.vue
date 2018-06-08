@@ -216,6 +216,7 @@ export default {
 
 <style lang='sass'>
 @import 'assets/style/variables.sass'
+@import 'assets/style/mixins.sass'
 
 main
   padding: 1rem 0
@@ -261,36 +262,18 @@ main
   background: rgba(0, 0, 0, .5);
   transition: .3s
 
-.modal__container-widgets,
-.modal__container-charts,
-.modal__container-contacts
-  position: fixed
-  top: 50%
-  left: 50%
-  transform: translate(-50%, -50%)
-  z-index: 9999
-  width: 390px
-  height: 440px
-  padding: 1.5rem
-  background: #fff
-  border-radius: 1.5rem
-  h2
-    margin: 1rem 1rem
-    font-weight: normal
-    font-size: 2.5rem
-  .hr
-    width: 100%
-    margin: 1rem 0
-    border: 0.5px solid #eee
+.modal__container-widgets
+  +modal-window(390px, 510px)
+  button
+    +standard-button
 
 .modal__container-charts
-  width: 350px
-  height: 350px
+  +modal-window(350px, 350px)
+  button
+    +standard-button
 
 .modal__container-contacts
-  width: 390px
-  height: 420px
-
-.modal__container-widgets
-  height: 510px
+  +modal-window(390px, 420px)
+  button
+    +standard-button
 </style>

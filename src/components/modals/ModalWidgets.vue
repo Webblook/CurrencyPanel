@@ -147,20 +147,4 @@ input:focus + .slider
 
 input:checked + .slider:before
   transform: translateX(26px)
-
-button
-  width: 130px
-  height: 35px
-  margin: 3rem
-  font-size: 1.5rem
-  color: $lightBlue
-  background: none
-  border: 2px solid $lightBlue
-  border-radius: 5px
-  outline: none
-  transition: .3s
-  cursor: pointer
-  &:hover
-    background: $lightBlue
-    color: #fff
 </style>

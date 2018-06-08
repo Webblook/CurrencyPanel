@@ -70,20 +70,4 @@ textarea
   border-bottom: 2px solid $lightBlue
   outline: none
   resize: none
-
-button
-  width: 130px
-  height: 35px
-  margin: 3rem
-  font-size: 1.5rem
-  color: $lightBlue
-  background: none
-  border: 2px solid $lightBlue
-  border-radius: 5px
-  outline: none
-  transition: .3s
-  cursor: pointer
-  &:hover
-    background: $lightBlue
-    color: #fff
 </style>
