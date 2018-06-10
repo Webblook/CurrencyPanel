@@ -33,7 +33,7 @@
                   v-show="activeWidgets.currencySwitcher"
                   v-bind:dataCurrencies="this.dataCurrencies"
                   v-bind:date="this.date"
-                  v-on:selectedCurrency="currency => { this.selectedCurrency = currency }"></widget-currency-switcher>
+                  v-on:selectedCurrency="currency => this.selectedCurrency = currency"></widget-currency-switcher>
 
                   <!-- Last update -->
                   <widget-last-update
@@ -66,7 +66,10 @@
 
     <modal-charts
     v-show="activeModals.showCharts"
-    v-on:selectedChart="chart => { this.currentChartComponent = chart; this.activeModals.showCharts = false }"></modal-charts>
+    v-on:selectedChart="chart => { 
+      this.currentChartComponent = chart; 
+      this.activeModals.showCharts = false 
+    }"></modal-charts>
 
     <modal-contacts
     v-show="activeModals.showContacts"></modal-contacts>
@@ -155,8 +158,8 @@ export default {
 
   methods: {
     setDate() {
-      // Добавляем последние 7 чисел
-      // YYYY/MM/DD
+      // Добавляем последние 7 дат
+      // Формат YYYY-MM-DD
       for (let i = 0; i < 7; i++) {
         let date = new Date();
 
@@ -188,7 +191,13 @@ export default {
 
         fetch('http://data.fixer.io/api/'+missingData[i]+'?access_key=e9f35012208415f1b93462f7d7943f2a')
         .then(response => response.json())
-        .then(response => localStorage.setItem(missingData[i], JSON.stringify(response)))
+        .then(response => {
+          if (response.success != true) {
+            alert('Oops! ' + response.error.info);
+          } else {
+            localStorage.setItem(missingData[i], JSON.stringify(response));
+          };
+        })
       };
     },
 
@@ -212,7 +221,7 @@ export default {
     },
 
     hideModals() {
-      // Заркываем все модалки
+      // Закрываем все модалки
       this.activeModals.showWidgets = false;
       this.activeModals.showCharts = false;
       this.activeModals.showContacts = false;
