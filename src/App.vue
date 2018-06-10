@@ -33,7 +33,7 @@
                   v-show="activeWidgets.currencySwitcher"
                   v-bind:dataCurrencies="this.dataCurrencies"
                   v-bind:date="this.date"
-                  v-on:selectedCurrency="(currency) => this.selectedCurrency = currency"></widget-currency-switcher>
+                  v-on:selectedCurrency="currency => { this.selectedCurrency = currency }"></widget-currency-switcher>
 
                   <!-- Last update -->
                   <widget-last-update
@@ -66,7 +66,7 @@
 
     <modal-charts
     v-show="activeModals.showCharts"
-    v-on:selectedChart="(chart) => {this.currentChartComponent = chart; this.activeModals.showCharts = false}"></modal-charts>
+    v-on:selectedChart="chart => { this.currentChartComponent = chart; this.activeModals.showCharts = false }"></modal-charts>
 
     <modal-contacts
     v-show="activeModals.showContacts"></modal-contacts>
@@ -168,20 +168,27 @@ export default {
     },
 
     getDataCurrencies() {
-      // Обновляем курсы валют + устанавливаем новое время в localStorage, если прошло более 24-х
-      if (Date.now() > localStorage.getItem('remainingTime')) {
-        localStorage.clear();
+      let dates = [];
+      let localStorageDates = [];
 
-        let date = new Date();
-        let remainingTime = date.getTime( date.setHours(24,0,0,0) ); // Устанавливаем полночь след. дня
-        localStorage.setItem('remainingTime', remainingTime);
+      // Записываем актуальные даты в формате YYYY-MM-DD
+      // Записываем все имеющиеся даты из localStorage
+      for (let i = 0; i < 7; i++) {
+        dates.push(this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]);
+        localStorageDates.push(localStorage.key(i));
+      }
 
-        // Делаем запросы на последние 7 дней, добавляем в localStorage
-        for (let i = 0; i < 7; i++) {
-          fetch('http://data.fixer.io/api/'+this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]+'-'+'?access_key=9715c4c33820dac62fe129e9506ea668')
-            .then( response => response.json() )
-            .then( response => localStorage.setItem(this.date.years[i]+this.date.months[i]+this.date.dates[i], JSON.stringify(response)) )
-        };
+      // Добавляем все недостающиее и устаревшие даты
+      let missingData = dates.filter(number => localStorageDates.indexOf(number) === -1);
+      let obsoleteData = localStorageDates.filter(number => dates.indexOf(number) === -1);
+
+      // Удаляем все устаревшие ключи из хранилища, делаем запросы на новые
+      for (let i = 0; i < missingData.length; i++) {
+        localStorage.removeItem(obsoleteData[i]);
+
+        fetch('http://data.fixer.io/api/'+missingData[i]+'?access_key=e9f35012208415f1b93462f7d7943f2a')
+        .then(response => response.json())
+        .then(response => localStorage.setItem(missingData[i], JSON.stringify(response)))
       };
     },
 
@@ -189,7 +196,7 @@ export default {
       // Записываем в dataCurrencies полученные даные
       // Записываем первоначальный курс для прорисовки диаграммы
       for (let i = 0; i < 7; i++) {
-        this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]] = JSON.parse( localStorage.getItem(this.date.years[i]+this.date.months[i]+this.date.dates[i]) );
+        this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]] = JSON.parse( localStorage.getItem(this.date.years[i]+'-'+this.date.months[i]+'-'+this.date.dates[i]) );
         this.dataCurrencies.activeRates.push( this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]].rates[this.selectedCurrency] );
       };
     },
