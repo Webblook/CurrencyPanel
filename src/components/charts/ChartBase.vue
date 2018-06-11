@@ -1,5 +1,5 @@
 <template>
-  <div class="chart-resize">
+  <div class="chart-container__resize">
     <component
     v-bind:is="this.currentChartComponent"
     v-bind:dataCurrencies="this.dataCurrencies"
@@ -69,6 +69,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.chart-resize
+.chart-container__resize
   width: 75%
 </style>

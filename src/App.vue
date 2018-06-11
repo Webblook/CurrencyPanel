@@ -237,24 +237,34 @@ export default {
 main
   padding: 1rem 0
 
-.widget
+.widgets-container__item
   height: 150px
   margin: 2rem 0
   text-align: center
   border-radius: 1rem
   background: #fff
   box-shadow: 0 0 10px #eee
-  i
-    font-size: 6rem
-    color: #2196F3
-  h1
-    font-size: 3rem
-    color: $black
-  p
-    font-size: 1.5rem
-    color: $grey
   .row
     height: 150px
+
+.widgets-container__select
+  width: 100%
+  height: 40px
+  color: $black
+  background: #fff
+  border: 1px solid #2196F3
+
+.widgets-container__icon
+  font-size: 6rem
+  color: $blue
+
+.widgets-container__title
+  font-size: 3rem
+  color: $black
+
+.widgets-container__description
+  font-size: 1.5rem
+  color: $grey
 
 .chart-container
   padding: 2% 0
@@ -262,34 +272,44 @@ main
   border-radius: 1rem
   box-shadow: 0 0 10px #eee
 
-.modal-enter 
+.modal-enter
   opacity: 0
 
-.modal-leave-active 
+.modal-leave-active
   opacity: 0
 
-.modal__mask
+.modal-mask
   position: fixed
   top: 0
   left: 0
   z-index: 9999
   width: 100%
   height: 100%
-  background: rgba(0, 0, 0, .5);
+  background: rgba(0, 0, 0, .5)
   transition: .3s
 
-.modal__container-widgets
+.modal-container__widgets
   +modal-window(390px, 510px)
-  button
-    +standard-button
 
-.modal__container-charts
+.modal-container__charts
   +modal-window(350px, 350px)
-  button
-    +standard-button
 
-.modal__container-contacts
+.modal-container__contacts
   +modal-window(390px, 420px)
-  button
-    +standard-button
+
+.modal-container__button
+  width: 130px
+  height: 35px
+  margin: 3rem
+  font-size: 1.5rem
+  color: $lightBlue
+  background: none
+  border: 2px solid $lightBlue
+  border-radius: 5px
+  outline: none
+  transition: .3s
+  cursor: pointer
+  &:hover
+    background: $lightBlue
+    color: #fff
 </style>

@@ -1,36 +1,37 @@
 <template>
   <transition name="modal">
 
-    <div class="modal__mask">
-      <div class="modal__container-widgets" v-on:click.stop>
-        <h2>Widgets</h2>
-        <div class="hr"></div>       
-        <div class="container">
+    <div class="modal-mask">
+      <div class="modal-container__widgets" v-on:click.stop>
+
+        <h2 class="modal-container__title">Widgets</h2>
+        <div class="modal-container__line"></div>       
+        <div class="container-fluid">
           <div class="row">
 
-            <div class="modal__container-widgets-toggle col-12"
+            <div class="modal-container__widgets-toggle col-12"
             v-for="toggle in toggles"
             v-bind:key="toggle.id">
               <div class="row">
                 <div class="col-6 align-self-center">
-                  <p>{{ toggle.label }}</p>
+                  <p class="modal-container__widgets__name">{{ toggle.label }}</p>
                 </div>
                 <div class="col-6 align-self-center d-flex justify-content-end">
-                  <label class="toggle">
+                  <label class="modal-container__widgets__toggle">
                     <input
+                    class="modal-container__widgets__input"
                     type="checkbox"
-                    class="toggle__input"
                     v-bind:id="toggle.id"
                     v-bind:checked="toggle.isChecked"
                     v-on:change="checkNumber">
-                    <span class="slider"></span>
+                    <span class="modal-container__widgets__slider"></span>
                   </label>
                 </div>
               </div>
             </div>
 
-            <div class="modal__container-widgets-confirmation col-12 d-flex justify-content-center">
-              <button v-on:click="$emit('selectedToggles', getSelectedToggles())">Save changes</button>
+            <div class="col-12 d-flex justify-content-center">
+              <button class="modal-container__button" v-on:click="$emit('selectedToggles', getSelectedToggles())">Save changes</button>
             </div>
 
           </div>
@@ -58,8 +59,9 @@
 
     methods: {
       checkNumber(toggle) {
-        let inputs = document.querySelectorAll('.toggle__input:checked');
+        let inputs = document.querySelectorAll('.modal-container__widgets__input:checked');
 
+        console.log(inputs)
         if (inputs.length > 3) {
           toggle.target.checked = false;
         } else if (inputs.length < 1) {
@@ -101,22 +103,22 @@
 <style lang="sass" scoped>
 @import '../../assets/style/variables.sass'
 
-.modal__container-widgets-toggle
+.modal-container__widgets-toggle
   padding: 2.5rem 1.5rem
 
-p
+.modal-container__widgets__name
   font-size: 1.7rem
 
-.toggle
+.modal-container__widgets__toggle
   position: relative
   display: inline-block
   width: 60px
   height: 34px
 
-.toggle input 
+.modal-container__widgets__input
   display: none
 
-.slider
+.modal-container__widgets__slider
   position: absolute
   top: 0
   left: 0
@@ -129,7 +131,7 @@ p
   &:before
     border-radius: 50%
 
-.slider:before
+.modal-container__widgets__slider:before
   content: ''
   position: absolute
   left: 4px
@@ -139,12 +141,12 @@ p
   background: #fff
   transition: .4s
 
-input:checked + .slider
+.modal-container__widgets__input:checked + .modal-container__widgets__slider
   background-color: $lightBlue
 
-input:focus + .slider
+.modal-container__widgets__input:focus + .modal-container__widgets__slider
   box-shadow: 0 0 1px $lightBlue
 
-input:checked + .slider:before
+.modal-container__widgets__input:checked + .modal-container__widgets__slider:before
   transform: translateX(26px)
 </style>

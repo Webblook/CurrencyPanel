@@ -1,14 +1,14 @@
 <template>
   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-    <div class="widget">
+    <div class="widgets-container__item">
       <div class="container-fluid">
         <div class="row">
           <div class="col-6 align-self-center">
-            <i class="ion-md-time"></i>
+            <i class="widgets-container__icon ion-md-time"></i>
           </div>
           <div class="col-6 align-self-center">
-            <h1>{{ this.date.years[6]+'/'+this.date.months[6]+'/'+this.date.dates[6] }}</h1>
-            <p>Last update</p>
+            <h1 class="widgets-container__title widgets-container__title_size_s">{{ this.date.years[6]+'/'+this.date.months[6]+'/'+this.date.dates[6] }}</h1>
+            <p class="widgets-container__description">Last update</p>
           </div>
         </div>
       </div>
@@ -33,6 +33,6 @@ export default {
 </script>
 
 <style lang='sass' scoped>
-h1
+.widgets-container__title_size_s
   font-size: 2.5rem
 </style>

@@ -1,25 +1,25 @@
 <template>
   <nav class="sidebar">
-    <ul>
+    <ul class="sidebar__nav">
 
-      <li v-on:click.stop>
-        <a v-on:click="$emit('showWidgets')">
-          <span>Widgets</span>
-          <i class="ion-md-cube"></i>
+      <li class="sidebar__item" v-on:click.stop>
+        <a class="sidebar__link" v-on:click="$emit('showWidgets')">
+          <span class="sidebar__text">Widgets</span>
+          <i class="sidebar__icon ion-md-cube"></i>
         </a>
       </li>
 
-      <li v-on:click.stop>
-        <a v-on:click="$emit('showCharts')">
-          <span>Charts</span>
-          <i class="ion-md-pie"></i>
+      <li class="sidebar__item" v-on:click.stop>
+        <a class="sidebar__link" v-on:click="$emit('showCharts')">
+          <span class="sidebar__text">Charts</span>
+          <i class="sidebar__icon ion-md-pie"></i>
         </a>
       </li>
 
-      <li v-on:click.stop>
-        <a v-on:click="$emit('showContacts')">
-          <span>Contact</span>
-          <i class="ion-md-mail"></i>
+      <li class="sidebar__item" v-on:click.stop>
+        <a class="sidebar__link" v-on:click="$emit('showContacts')">
+          <span class="sidebar__text">Contact</span>
+          <i class="sidebar__icon ion-md-mail"></i>
         </a>
       </li>
 
@@ -39,24 +39,27 @@
   background: #fff
   box-shadow: 0 5px 10px #eee
   border-top: 1px solid #eee
-  li
-    font-size: 1.6rem
-    list-style: none
-  a
-    position: relative
-    display: block
-    padding: 2.5rem 7rem
-    text-decoration: none
-    color: $black
-    transition: .4s
-    cursor: pointer
-    &:hover
-      color: $lightBlue
-  i
-    position: absolute
-    top: 2.8rem
-    left: 0
-    margin-left: 3rem
+
+.sidebar__item
+  font-size: 1.6rem
+  list-style: none
+
+.sidebar__link
+  position: relative
+  display: block
+  padding: 2.5rem 7rem
+  text-decoration: none
+  color: $black
+  transition: .4s
+  cursor: pointer
+  &:hover
+    color: $lightBlue
+
+.sidebar__icon
+  position: absolute
+  top: 2.8rem
+  left: 0
+  margin-left: 3rem
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px)
@@ -67,13 +70,16 @@
     z-index: 10
     height: 60px
     padding: 0
-  ul
+
+  .sidebar__nav
     display: flex
     justify-content: space-between
     height: 60px
-  a
+
+  .sidebar__link
     padding: 3rem 7rem !important
-  i
+  
+  .sidebar__icon
     top: 2.2rem !important
 
 // Small devices (landscape phones, less than 768px)
@@ -84,13 +90,14 @@
 
 // Large devices (desktops, less than 1200px)
 @media (max-width: 1199.98px) 
-  .sidebar
-    span
-      display: none
-    a
-      padding: 4rem 0
-    i
-      left: 50%
-      transform: translate(-50%)
-      margin-left: 0
+  .sidebar__text
+    display: none
+  
+  .sidebar__link
+    padding: 4rem 0
+
+  .sidebar__icon
+    left: 50%
+    transform: translate(-50%)
+    margin-left: 0
 </style>
