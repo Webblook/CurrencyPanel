@@ -186,18 +186,21 @@ export default {
       let obsoleteData = localStorageDates.filter(number => dates.indexOf(number) === -1);
 
       // Удаляем все устаревшие ключи из хранилища, делаем запросы на новые
-      for (let i = 0; i < missingData.length; i++) {
-        localStorage.removeItem(obsoleteData[i]);
-
-        fetch('http://data.fixer.io/api/'+missingData[i]+'?access_key=e9f35012208415f1b93462f7d7943f2a')
-        .then(response => response.json())
-        .then(response => {
-          if (response.success != true) {
-            alert('Oops! ' + response.error.info);
-          } else {
-            localStorage.setItem(missingData[i], JSON.stringify(response));
-          };
-        })
+      // 32400000ms = 9h
+      if (Date.now() > Date.UTC(this.date.years[6],this.date.months[6]-1,this.date.dates[6]) + 32400000) {
+        for (let i = 0; i < missingData.length; i++) {
+          localStorage.removeItem(obsoleteData[i]);
+  
+          fetch('http://data.fixer.io/api/'+missingData[i]+'?access_key=e9f35012208415f1b93462f7d7943f2a')
+          .then(response => response.json())
+          .then(response => {
+            if (response.success != true) {
+              alert('Oops! ' + response.error.info);
+            } else {
+              localStorage.setItem(missingData[i], JSON.stringify(response));
+            };
+          })
+        };
       };
     },
 
