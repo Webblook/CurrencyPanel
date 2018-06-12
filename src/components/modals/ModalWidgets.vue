@@ -58,17 +58,6 @@
     },
 
     methods: {
-      checkNumber(toggle) {
-        let inputs = document.querySelectorAll('.modal-container__widgets__input:checked');
-
-        console.log(inputs)
-        if (inputs.length > 3) {
-          toggle.target.checked = false;
-        } else if (inputs.length < 1) {
-          toggle.target.checked = true;
-        };
-      },
-
       setToggles() {
         // Добавляем в toggles объекты с данными каждого переключателя
         for (let i = 0; i < this.labels.length; i++) {
@@ -95,6 +84,26 @@
           };
         };
         return this.toggles;
+      },
+
+      checkNumber(toggle) {
+        let inputs = document.querySelectorAll('.modal-container__widgets__input:checked');
+
+        if (inputs.length > 3) {
+          toggle.target.checked = false;
+
+          toggle.target.nextElementSibling.classList.add('shake');
+          setTimeout(()=>{
+            toggle.target.nextElementSibling.classList.remove('shake');
+          }, 1000);
+        } else if (inputs.length < 1) {
+          toggle.target.checked = true;
+
+          toggle.target.nextElementSibling.classList.add('shake');
+          setTimeout(()=>{
+            toggle.target.nextElementSibling.classList.remove('shake');
+          }, 1000);
+        };
       }
     }
   }
@@ -103,6 +112,19 @@
 <style lang="sass" scoped>
 @import '../../assets/style/variables.sass'
 
+.shake
+  animation: shake .8s
+
+@keyframes shake 
+  10%, 90% 
+    transform: translate(-1px) 
+  20%, 80% 
+    transform: translate(1px) 
+  30%, 50%, 70% 
+    transform: translate(-2px)
+  40%, 60% 
+    transform: translate(2px)
+  
 .modal-container__widgets-toggle
   padding: 2.5rem 1.5rem
 
