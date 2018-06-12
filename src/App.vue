@@ -47,10 +47,12 @@
 
             <div class="col-12"> 
               <div class="chart-container d-flex justify-content-center">
-                <chart-base
-                v-bind:dataCurrencies="this.dataCurrencies"
-                v-bind:selectedCurrency="this.selectedCurrency"
-                v-bind:currentChartComponent="this.currentChartComponent"></chart-base>
+                <div class="chart-container__resize">
+                  <chart-base
+                  v-bind:dataCurrencies="this.dataCurrencies"
+                  v-bind:selectedCurrency="this.selectedCurrency"
+                  v-bind:currentChartComponent="this.currentChartComponent"></chart-base>
+                </div>
               </div>
             </div>
 
@@ -274,6 +276,11 @@ main
   background: #fff
   border-radius: 1rem
   box-shadow: 0 0 10px #eee
+
+.chart-container__resize
+  position: relative
+  width: 75%
+  padding-top: 38.5%
 
 .modal-enter
   opacity: 0

@@ -1,11 +1,9 @@
 <template>
-  <div class="chart-container__resize">
-    <component
-    v-bind:is="this.currentChartComponent"
-    v-bind:dataCurrencies="this.dataCurrencies"
-    v-bind:selectedCurrency="this.selectedCurrency"
-    v-bind:weekDays="this.weekDays"></component>
-  </div>
+  <component
+  v-bind:is="this.currentChartComponent"
+  v-bind:dataCurrencies="this.dataCurrencies"
+  v-bind:selectedCurrency="this.selectedCurrency"
+  v-bind:weekDays="this.weekDays"></component>
 </template>
 
 <script>
@@ -69,6 +67,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.chart-container__resize
-  width: 75%
+canvas
+  position: absolute
+  top: 0
+  left: 0
 </style>
