@@ -1,7 +1,7 @@
 <template>
   <transition name="modal">
 
-    <div class="modal-mask">
+    <div class="modal-mask" v-on:click="resetChecked">
       <div class="modal-container__charts" v-on:click.stop>
 
         <h2 class="modal-container__title">Charts</h2>
@@ -11,7 +11,7 @@
           <div class="modal-container__charts__inputs-container__item"
           v-for="input in inputs"
           v-bind:key="input.id">
-            <input class="modal-container__charts__input" type="radio" v-bind:id="input.id" name="charts" v-bind:checked="input.isChecked">
+            <input class="modal-container__charts__input" type="radio" v-bind:id="input.id" name="charts">
             <label class="modal-container__charts__label" v-bind:for="input.id">{{ input.label }}</label>
           </div>
         </div>
@@ -32,7 +32,8 @@ export default {
     return {
       labels: ['Line chart', 'Bar chart', 'Radar chart', 'Horizontal bar chart', 'Pie chart'],
       id: ['chart-line', 'chart-bar', 'chart-radar', 'chart-horizontal-bar', 'chart-pie'],
-      inputs: []
+      inputs: [],
+      currentChartComponent: 'chart-line',
     }
   },
 
@@ -47,29 +48,35 @@ export default {
         this.inputs.push(
           {
             id: this.id[i],
-            label: this.labels[i],
-            isChecked: false
+            label: this.labels[i]
           }
         );
       };
 
-      this.inputs[0].isChecked = true;
+      // Без задержки, постоянно null. Без костыля, не смог решить
+      setTimeout(()=>{
+        document.getElementById(this.id[0]).checked = true;
+      }, 50)
     },
 
     getSelectedChart() {
-      // Устанавливаем всем input'ам isChecked = false
-      for (let i = 0; i < this.labels.length; i++) { 
-        this.inputs[i].isChecked = false;
-      };
-
       // Если id.checked = true, присваиваем inputs[i].isChecked = true
       // Возвращаем выбранную диаграмму
       for (let i = 0; i < this.labels.length; i++) {
         if (document.getElementById(this.id[i]).checked) {
-          this.inputs[i].isChecked = true;
-          return this.id[i];
+          this.currentChartComponent = this.id[i];
+          return this.id[i]
         };
+      };    
+    },
+
+    resetChecked() {
+      // Перед закрытием, все сбрасываем, кроме выбранного
+      for (let i = 0; i < this.labels.length; i++) {
+        document.getElementById(this.id[i]).checked = false;
       };
+
+      document.getElementById(this.currentChartComponent).checked = true;
     }
   }
 }
