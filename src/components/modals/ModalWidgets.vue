@@ -13,9 +13,11 @@
             v-for="toggle in toggles"
             v-bind:key="toggle.id">
               <div class="row">
+
                 <div class="col-6 align-self-center">
                   <p class="modal-container__widgets__name">{{ toggle.label }}</p>
                 </div>
+
                 <div class="col-6 align-self-center d-flex justify-content-end">
                   <label class="modal-container__widgets__toggle">
                     <input
@@ -27,6 +29,7 @@
                     <span class="modal-container__widgets__slider"></span>
                   </label>
                 </div>
+
               </div>
             </div>
 

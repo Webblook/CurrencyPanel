@@ -73,11 +73,8 @@
 
   .sidebar__nav
     display: flex
-    justify-content: space-between
+    justify-content: space-around
     height: 60px
-
-  .sidebar__link
-    padding: 3rem 7rem !important
   
   .sidebar__icon
     top: 2.2rem !important

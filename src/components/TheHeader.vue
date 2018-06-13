@@ -73,6 +73,12 @@ header
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px)
+  .col-8, .col-4
+    padding: 0
+
+  .header__item
+    margin: 1.5rem 0
+
   .navbar__brand
     .header__title_size_sm
       font-size: 1.3rem !important
