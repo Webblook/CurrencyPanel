@@ -158,6 +158,12 @@ export default {
       for (let i = 0; i < 7; i++) {
         this.dataCurrencies.activeRates.push( this.dataCurrencies[this.date.years[i]+this.date.months[i]+this.date.dates[i]].rates[this.selectedCurrency] );
       };
+    },
+
+    currentChartComponent() {
+      // Удаляем предыдущий блок для ресайза
+      let elem = document.querySelector('.chartjs-size-monitor');
+      elem.remove();
     }
   },
 
