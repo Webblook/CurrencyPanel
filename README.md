@@ -25,9 +25,8 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## At an erly date
 
-- New widgets, their customization
+- Widgets customization
 - Interface settings
-- Currency converter
 - Support all currencies (change pricing plan)
 
 ## Built with
