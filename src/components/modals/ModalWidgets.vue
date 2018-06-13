@@ -9,7 +9,7 @@
         <div class="container-fluid">
           <div class="row">
 
-            <div class="modal-container__widgets-toggle col-12"
+            <div class="modal-container__widgets-toggle col-6"
             v-for="toggle in toggles"
             v-bind:key="toggle.id">
               <div class="row">
@@ -31,7 +31,7 @@
             </div>
 
             <div class="col-12 d-flex justify-content-center">
-              <button class="modal-container__button" v-on:click="$emit('selectedToggles', getSelectedToggles())">Save changes</button>
+              <button class="modal-container__button modal-container__button_m_sm" v-on:click="$emit('selectedToggles', getSelectedToggles())">Save changes</button>
             </div>
 
           </div>
@@ -47,8 +47,8 @@
   export default {
     data() {
       return {
-        labels: ['Favorite currency', 'Selected currency', 'Currency switcher', 'Last update'],
-        id: ['favoriteCurrency', 'selectedCurrency', 'currencySwitcher', 'lastUpdate'],
+        labels: ['Favorite currency', 'Selected currency', 'Currency switcher', 'Last update', 'Currency converter'],
+        id: ['favoriteCurrency', 'selectedCurrency', 'currencySwitcher', 'lastUpdate', 'currencyConverter'],
         toggles: []
       }
     },
@@ -60,7 +60,8 @@
     methods: {
       setToggles() {
         // Добавляем в toggles объекты с данными каждого переключателя
-        for (let i = 0; i < this.labels.length; i++) {
+        // Первые три по умолчанию - true, все остальные false
+        for (let i = 0; i < 3; i++) {
           this.toggles.push(
             {
               id: this.id[i],
@@ -70,7 +71,15 @@
           );
         };
 
-        this.toggles[this.labels.length-1].isChecked = false;
+        for (let i = 3; i < this.labels.length; i++) {
+          this.toggles.push(
+            {
+              id: this.id[i],
+              label: this.labels[i],
+              isChecked: false
+            }
+          );
+        };
       },
 
       getSelectedToggles() {
@@ -87,6 +96,8 @@
       },
 
       checkNumber(toggle) {
+        // Устанавливаем маскимальное (3) и минмиальное (1) количества для выбранных виджетов.
+        // Добавляем класс с анимацией, при привышении количества
         let inputs = document.querySelectorAll('.modal-container__widgets__input:checked');
 
         if (inputs.length > 3) {
@@ -171,4 +182,7 @@
 
 .modal-container__widgets__input:checked + .modal-container__widgets__slider:before
   transform: translateX(26px)
+
+.modal-container__button_m_sm
+  margin: 1.5rem
 </style>

@@ -41,6 +41,12 @@
                   v-bind:dataCurrencies="this.dataCurrencies"
                   v-bind:date="this.date"></widget-last-update>
 
+                  <!-- Currency converter -->
+                  <widget-currency-converter
+                  v-show="activeWidgets.currencyConverter"
+                  v-bind:dataCurrencies="this.dataCurrencies"
+                  v-bind:selectedCurrency="this.selectedCurrency"></widget-currency-converter>
+
                 </div>
               </div>
             </div>
@@ -96,7 +102,8 @@ import ModalContacts from './components/modals/ModalContacts.vue';
 import WidgetFavoriteCurrency from './components/widgets/WidgetFavoriteCurrency.vue';
 import WidgetSelectedCurrency from './components/widgets/WidgetSelectedCurrency.vue';
 import WidgetCurrencySwitcher from './components/widgets/WidgetCurrencySwitcher.vue';
-import WidgetLastUpdate from './components/widgets/WidgetLastUpdate.vue'
+import WidgetLastUpdate from './components/widgets/WidgetLastUpdate.vue';
+import WidgetCurrencyConverter from './components/widgets/WidgetCurrencyConverter.vue'
 
 export default {
   components: {
@@ -109,7 +116,8 @@ export default {
     'widget-favorite-currency': WidgetFavoriteCurrency,
     'widget-selected-currency': WidgetSelectedCurrency,
     'widget-currency-switcher': WidgetCurrencySwitcher,
-    'widget-last-update': WidgetLastUpdate
+    'widget-last-update': WidgetLastUpdate,
+    'widget-currency-converter': WidgetCurrencyConverter
   },
 
   data() {
@@ -131,7 +139,8 @@ export default {
         favoriteCurrency: true,
         selectedCurrency: true,
         currencySwitcher: true,
-        lastUpdate: false
+        lastUpdate: false,
+        currencyConverter: false
       },
 
       activeModals: {
@@ -271,6 +280,16 @@ main
   font-size: 1.5rem
   color: $grey
 
+.widgets-container__input
+  width: 100%
+  height: 40px
+  padding: 1rem
+  margin-top: 2rem
+  font-size: 1.5rem
+  color: $black
+  background: #fff
+  border: 1px solid #2196F3
+
 .chart-container
   padding: 2% 0
   background: #fff
@@ -299,7 +318,7 @@ main
   transition: .3s
 
 .modal-container__widgets
-  +modal-window(390px, 510px)
+  +modal-window(500px, 440px)
 
 .modal-container__charts
   +modal-window(350px, 350px)

@@ -24,7 +24,8 @@
               v-bind:key="key"
               v-if="key != 'RUB' && key != 'USD'">{{ key }}</option>
             </select>
-          </div> 
+          </div>
+          
         </div>
       </div>
     </div>
