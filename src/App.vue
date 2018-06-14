@@ -215,6 +215,9 @@ export default {
               alert('Oops! ' + response.error.info);
             } else {
               localStorage.setItem(missingData[i], JSON.stringify(response));
+
+              // При добавлении всех данных в хранилище, обновляем страницу
+              if (localStorage.length > 6) location.reload();
             };
           })
         };
