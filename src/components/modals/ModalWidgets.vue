@@ -18,16 +18,14 @@
                   <p class="modal-container__widgets__name">{{ toggle.label }}</p>
                 </div>
 
-                <div class="col-6 align-self-center d-flex justify-content-end">
-                  <label class="modal-container__widgets__toggle">
-                    <input
-                    class="modal-container__widgets__input"
-                    type="checkbox"
-                    v-bind:id="toggle.id"
-                    v-bind:checked="toggle.isChecked"
-                    v-on:change="checkNumber">
-                    <span class="modal-container__widgets__slider"></span>
-                  </label>
+                <div class="col-6 align-self-center d-flex justify-content-center">
+                  <input 
+                  type="checkbox" 
+                  class="modal-container__widgets__input"
+                  v-bind:id="toggle.id"
+                  v-bind:checked="toggle.isChecked"
+                  v-on:change="checkNumber">
+                  <label class="modal-container__widgets__label" v-bind:for="toggle.id"></label>
                 </div>
 
               </div>
@@ -145,47 +143,40 @@
 .modal-container__widgets__name
   font-size: 1.7rem
 
-.modal-container__widgets__toggle
-  position: relative
-  display: inline-block
-  width: 60px
-  height: 34px
-
 .modal-container__widgets__input
   display: none
-
-.modal-container__widgets__slider
-  position: absolute
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
+  &:checked
+    left: calc(100% - 5px)
+    transform: translateX(-100%)
+  &:checked + label
+    background: $lightBlue
+    
+.modal-container__widgets__label
+  position: relative
+  display: block
+  width: 50px
+  height: 30px
   background: $grey
-  border-radius: 34px
-  transition: .4s
+  border-radius: 2rem
+  transition: .5s
   cursor: pointer
-  &:before
-    border-radius: 50%
+  &:after 
+    content: ''
+    position: absolute
+    top: 5px
+    left: 5px
+    width: 20px
+    height: 20px
+    background: #fff
+    border-radius: 2rem
+    transition: 0.3s
 
-.modal-container__widgets__slider:before
-  content: ''
-  position: absolute
-  left: 4px
-  bottom: 4px
-  height: 26px
-  width: 26px
-  background: #fff
-  transition: .4s
+input:checked + label:after 
+  left: calc(100% - 5px)
+  transform: translateX(-100%)
 
-.modal-container__widgets__input:checked + .modal-container__widgets__slider
-  background-color: $lightBlue
-
-.modal-container__widgets__input:focus + .modal-container__widgets__slider
-  box-shadow: 0 0 1px $lightBlue
-
-.modal-container__widgets__input:checked + .modal-container__widgets__slider:before
-  transform: translateX(26px)
-
-.modal-container__button_m_sm
-  margin: 1.5rem
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) 
+  .modal-container__widgets__label
+    left: 1.5rem
 </style>

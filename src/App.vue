@@ -327,7 +327,7 @@ main
   transition: .3s
 
 .modal-container__widgets
-  +modal-window(500px, 440px)
+  +modal-window(500px, 460px)
 
 .modal-container__charts
   +modal-window(350px, 350px)
