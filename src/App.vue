@@ -299,6 +299,10 @@ main
   background: #fff
   border: 1px solid #2196F3
 
+.widgets-container__output
+  margin-top: 2rem
+  color: $black
+
 .chart-container
   padding: 2% 0
   background: #fff

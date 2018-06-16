@@ -6,7 +6,8 @@
           <div class="col-5 align-self-center">
             <input class="widgets-container__input" 
             type="text" 
-            v-model="value">
+            v-model="value"
+            maxlength="11">
             <p class="widgets-container__description">{{ firstCurrency }}</p>
           </div>
   
@@ -15,9 +16,7 @@
           </div>
   
           <div class="col-5 align-self-center">
-            <input class="widgets-container__input" 
-            v-bind:value="result"
-            disabled>
+            <p class="widgets-container__output">{{ result }}</p>
             <p class="widgets-container__description">{{ secondCurrency }}</p>
           </div>
           
@@ -64,7 +63,13 @@ export default {
 
     value(value) {
       // конвертируем валюты
-      this.result = (value * this.ratio).toFixed(3);
+      let result = (value * this.ratio).toFixed(3).toString()
+
+      if (result.length > 12) {
+        this.result = Math.round(value * this.ratio)
+      } else {
+        this.result = result
+      }
     }
   },
 
