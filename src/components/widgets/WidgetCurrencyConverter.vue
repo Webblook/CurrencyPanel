@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       value: '',
-      result: '',
+      result: '0.000',
       ratio: null,
       firstCurrency: 'EUR',
       secondCurrency: 'RUB',
