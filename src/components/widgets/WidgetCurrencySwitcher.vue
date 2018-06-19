@@ -19,10 +19,7 @@
             v-on:change="$emit('selectedCurrency', getSelectValue())">
               <option selected="selected">RUB</option>
               <option>USD</option>
-              <option 
-              v-for="(value, key) in this.dataCurrencies[this.date.years[0]+this.date.months[0]+this.date.dates[0]].rates"
-              v-bind:key="key"
-              v-if="key != 'RUB' && key != 'USD'">{{ key }}</option>
+              <option v-for="rate in filterRates" v-bind:key="rate">{{ rate }}</option>
             </select>
           </div>
           
@@ -43,6 +40,17 @@ export default {
     date: {
       type: Object,
       required: true
+    }
+  },
+
+  computed: {
+    filterRates() {
+      let rates = this.dataCurrencies[this.date.years[0]+this.date.months[0]+this.date.dates[0]].rates;
+      let result = [];
+      for (let rate in rates) {
+        if (rate != 'RUB' && rate != 'USD') result.push(rate)
+      };
+      return result;
     }
   },
 
