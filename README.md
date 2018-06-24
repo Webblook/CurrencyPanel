@@ -1,7 +1,7 @@
 
 # CurrencyPanel
 
-The CurrencyPanel is designed to monitor the exchange rate of currencies. At the moment there is a possibility of comparison Euro with 168 currencies. Due to the free api there is the ability only to compare the Euro with other currencies.
+The CurrencyPanel is designed to monitor the exchange rate of currencies. At the moment there is a possibility of comparison Euro with 168 currencies. Due to the free API, there is the ability only to compare the Euro with other currencies.
 
 Thank you for all your support!
 
